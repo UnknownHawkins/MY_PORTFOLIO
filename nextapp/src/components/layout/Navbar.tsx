@@ -101,7 +101,7 @@ export default function Navbar() {
           {/* Right Actions Toolbar */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Link
+            {/* <Link
               href="/login"
               onClick={playClickSound}
               onMouseEnter={playHoverSound}
@@ -112,7 +112,7 @@ export default function Navbar() {
             >
               Admin
               <ArrowUpRight className="h-3 w-3" />
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Toolbar Toggle */}

@@ -76,7 +76,7 @@ export default function MobileMenu() {
             <hr className="border-slate-200 dark:border-slate-900 my-2" />
 
             <div className="flex flex-col gap-3 px-2">
-              <Link
+              {/* <Link
                 href="/login"
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
@@ -87,7 +87,7 @@ export default function MobileMenu() {
                 <Shield className="mr-2 h-4 w-4 text-blue-500" />
                 Admin Gateway
                 <ArrowUpRight className="ml-1 h-3 w-3 opacity-60" />
-              </Link>
+              </Link> */}
             </div>
           </motion.div>
         </>
