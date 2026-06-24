@@ -255,32 +255,7 @@ export default function Projects({ initialProjects }: ProjectsProps) {
           )}
         </div>
 
-        {/* Global Showcases Link */}
-        <ScrollReveal direction="up" delay={0.2} className="flex justify-center">
-          <Card className="bg-gradient-to-r from-cyan-50/50 to-blue-50/50 dark:from-cyan-950/15 dark:to-blue-950/15 border-cyan-200 dark:border-cyan-500/20 max-w-lg w-full text-center hover:border-cyan-300 dark:hover:border-cyan-500/40 transition-all duration-300 relative overflow-hidden rounded-2xl shadow-sm">
-            <CardContent className="p-8">
-              <BookOpen className="h-10 w-10 text-cyan-500 dark:text-cyan-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Projects Showcase Hub</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">
-                Explore an extensive collection of minor experiments, CLI scripts, utility apps, and funny projects in my web-based showcase gallery.
-              </p>
-              <a
-                href={PROJECTS_SHOWCASE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={playClickSound}
-                onMouseEnter={playHoverSound}
-                className={cn(
-                  buttonVariants({ variant: "default" }),
-                  "bg-cyan-600 hover:bg-cyan-700 text-white font-bold h-10 px-5 rounded-xl cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] border-0 flex items-center justify-center w-fit mx-auto"
-                )}
-              >
-                Launch Showcase Hub
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </CardContent>
-          </Card>
-        </ScrollReveal>
+
 
       </div>
     </section>

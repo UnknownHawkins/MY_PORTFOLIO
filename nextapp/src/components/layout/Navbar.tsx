@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, BookOpen } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 import { NAV_LINKS, OWNER } from "@/lib/constants";
 import ThemeToggle from "@/components/shared/ThemeToggle";
@@ -100,6 +100,20 @@ export default function Navbar() {
 
           {/* Right Actions Toolbar */}
           <div className="hidden md:flex items-center gap-3">
+            <a
+              href="https://projects-showcase-eosin.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClickSound}
+              onMouseEnter={playHoverSound}
+              className={cn(
+                buttonVariants({ variant: "default" }),
+                "relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold border-0 cursor-pointer shadow-md rounded-xl flex items-center gap-1.5 px-3 py-1.5 h-9"
+              )}
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              Showcase
+            </a>
             <ThemeToggle />
             {/* <Link
               href="/login"
@@ -117,6 +131,17 @@ export default function Navbar() {
 
           {/* Mobile Toolbar Toggle */}
           <div className="flex md:hidden items-center gap-3">
+            <a
+              href="https://projects-showcase-eosin.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClickSound}
+              onMouseEnter={playHoverSound}
+              className="w-9 h-9 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md flex items-center justify-center transition-all"
+              aria-label="Open Projects Showcase Hub"
+            >
+              <BookOpen className="h-4 w-4" />
+            </a>
             <ThemeToggle />
             <Button
               variant="ghost"
