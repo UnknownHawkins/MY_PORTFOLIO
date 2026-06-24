@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "npm run dev --prefix nextapp",
-    "build": "npm run build --prefix nextapp",
+    "build": "npm run prisma:generate && npm run build --prefix nextapp",
     "start": "npm run start --prefix nextapp",
     "lint": "npm run lint --prefix nextapp",
     "typecheck": "npm run typecheck --prefix nextapp",
-    "prisma:generate": "npx prisma generate --schema=nextapp/prisma/schema.prisma",
-    "prisma:migrate": "npx prisma migrate dev --schema=nextapp/prisma/schema.prisma",
-    "prisma:seed": "npx tsx nextapp/prisma/seed.ts"
+    "prisma:generate": "npx --prefix nextapp prisma generate --schema=nextapp/prisma/schema.prisma",
+    "prisma:migrate": "npx --prefix nextapp prisma migrate dev --schema=nextapp/prisma/schema.prisma",
+    "prisma:seed": "npx --prefix nextapp tsx nextapp/prisma/seed.ts"
   }
 }
