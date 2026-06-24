@@ -1,0 +1,52 @@
+name: Next.js CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-size: 20.x
+        cache: 'npm'
+        cache-dependency-path: './nextapp/package-lock.json'
+
+    - name: Install Dependencies
+      run: |
+        cd nextapp
+        npm ci
+
+    - name: Generate Prisma Client
+      run: |
+        cd nextapp
+        npx prisma generate
+
+    - name: Lint Code
+      run: |
+        cd nextapp
+        npm run lint
+
+    - name: Check TypeScript Types
+      run: |
+        cd nextapp
+        npx tsc --noEmit
+
+    - name: Build Application
+      run: |
+        cd nextapp
+        npm run build
+      env:
+        # Mock env variables for build compile validation
+        DATABASE_URL: "postgresql://mock:mock@localhost:5432/mock?sslmode=require"
+        DIRECT_URL: "postgresql://mock:mock@localhost:5432/mock?sslmode=require"
+        NEXTAUTH_SECRET: "mock-secret-at-least-32-characters-long"

@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  admin
+  viewer
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String // hashed password
+  role      UserRole @default(admin)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id              String   @id @default(uuid())
+  title           String
+  description     String
+  longDescription String?  @db.Text
+  tags            String[]
+  technologies    String[]
+  githubUrl       String?
+  liveUrl         String?
+  imageUrl        String?
+  status          String   @default("completed") // completed, in_progress, held, archived
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
+  type            String? // Hackathon, Class Project, Mini Project
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Skill {
+  id          String   @id @default(uuid())
+  name        String
+  category    String // languages, databases, security, tools, frameworks
+  proficiency Int      @default(0) // 0-100
+  icon        String?
+  color       String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Experience {
+  id           String   @id @default(uuid())
+  title        String
+  company      String
+  type         String   @default("internship") // internship, freelance, full_time, part_time
+  startDate    String
+  endDate      String?
+  current      Boolean  @default(false)
+  location     String?
+  description  String?  @db.Text
+  bullets      String[]
+  technologies String[]
+  icon         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(uuid())
+  degree      String
+  institution String
+  location    String?
+  startYear   Int?
+  endYear     Int?
+  grade       String?
+  status      String   @default("completed") // current, completed
+  icon        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certification {
+  id            String   @id @default(uuid())
+  name          String
+  issuer        String
+  year          Int
+  pdfUrl        String?
+  credentialUrl String?
+  icon          String?
+  color         String?
+  category      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  ipAddress String?
+  createdAt DateTime @default(now())
+}
+
+model Analytics {
+  id        String   @id @default(uuid())
+  page      String
+  event     String
+  userAgent String?
+  ip        String?
+  country   String?
+  createdAt DateTime @default(now())
+}
+
+model Settings {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+model GitHubCache {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  data      String   @db.Text // JSON stringified cache data
+  expiresAt DateTime
+}
