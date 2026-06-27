@@ -154,6 +154,8 @@ export interface GitHubStats {
   longestStreak?: number;
   pinnedRepos?: GitHubRepo[];
   recentActivity?: GitHubRepo[];
+  contributionGraph?: ContributionGraph;
+  fetchedAt?: string;
 }
 
 export interface ContributionDay {

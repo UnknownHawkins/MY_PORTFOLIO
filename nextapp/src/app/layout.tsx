@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { generateSEO } from "@/lib/metadata";
+import FridayChat from "@/components/shared/FridayChat";
 
 // Load Google Fonts
 const inter = Inter({
@@ -31,7 +32,10 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
     >
       <body className="bg-background text-foreground antialiased selection:bg-blue-500/30 selection:text-blue-200">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <FridayChat />
+        </Providers>
       </body>
     </html>
   );

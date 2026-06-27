@@ -24,6 +24,12 @@ export default function GitHub() {
         
         <SectionTitle title="Open Source Contributions" subtitle="GitHub Activity" />
 
+        {stats?.fetchedAt && (
+          <div className="text-right text-[10px] text-slate-500 font-mono -mt-6 mb-4 select-none">
+            LAST FETCHED: {new Date(stats.fetchedAt).toLocaleString()}
+          </div>
+        )}
+
         {isLoading ? (
           <div className="space-y-6">
             {/* Stats skeleton */}
@@ -66,7 +72,7 @@ export default function GitHub() {
               
               {/* Heatmap */}
               <ScrollReveal direction="up" delay={0.15} className="lg:col-span-8 flex">
-                <ContributionGraph graph={stats.contributionsLastYear ? { totalContributions: stats.contributionsLastYear, weeks: [] } : { totalContributions: 0, weeks: [] }} />
+                <ContributionGraph graph={stats.contributionGraph || { totalContributions: stats.contributionsLastYear || 0, weeks: [] }} />
               </ScrollReveal>
 
               {/* Language distribution donut list */}

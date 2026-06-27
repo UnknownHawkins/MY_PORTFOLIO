@@ -135,6 +135,9 @@ export async function getGitHubStats(): Promise<GitHubStats> {
       // 3. Fetch Pinned Repos (or fallback to top repos by stars)
       const pinned = await getPinnedRepos(allRepos);
 
+      // 4. Fetch contribution calendar
+      const contributionGraph = await getContributions();
+
       return {
         user: {
           login: userData.login,
@@ -155,7 +158,10 @@ export async function getGitHubStats(): Promise<GitHubStats> {
         totalForks,
         totalRepos: userData.public_repos,
         topLanguages: sortedLanguages,
+        contributionsLastYear: contributionGraph.totalContributions,
+        contributionGraph,
         pinnedRepos: pinned,
+        fetchedAt: new Date().toISOString(),
       };
     } catch (error) {
       console.error("Error fetching live GitHub stats, falling back to static:", error);
@@ -426,5 +432,6 @@ function getStaticFallbackStats(): GitHubStats {
     totalRepos: GITHUB_REPOS.length,
     topLanguages: langCount,
     pinnedRepos: GITHUB_REPOS,
+    fetchedAt: new Date().toISOString(),
   };
 }
