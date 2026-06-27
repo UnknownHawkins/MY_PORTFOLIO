@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createRateLimiter } from "@/lib/redis";
 import { OWNER, CONTACT_INFO, SKILLS, EDUCATION, CERTIFICATIONS, PROJECTS } from "@/lib/constants";
 
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 // Web search utility using DuckDuckGo HTML scraper
 async function searchDuckDuckGo(query: string) {
@@ -80,9 +80,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!DEEPSEEK_API_KEY) {
+    if (!GEMINI_API_KEY) {
       return NextResponse.json(
-        { success: false, error: "DeepSeek API key is not configured on the server." },
+        { success: false, error: "Gemini API key is not configured on the server." },
         { status: 500 }
       );
     }
@@ -179,16 +179,16 @@ Constraints:
       }
     ];
 
-    // 6. Request DeepSeek API (Standard OpenAI structure)
-    console.log("Calling DeepSeek API with user message...");
-    let response = await fetch("https://api.deepseek.com/chat/completions", {
+    // 6. Request Gemini API (Standard OpenAI compatibility structure)
+    console.log("Calling Gemini API with user message...");
+    let response = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
+        "Authorization": `Bearer ${GEMINI_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "deepseek-chat",
+        model: "gemini-2.5-flash",
         messages: apiMessages,
         tools,
         tool_choice: "auto"
@@ -197,7 +197,7 @@ Constraints:
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`DeepSeek API returned error ${response.status}: ${errorText}`);
+      throw new Error(`Gemini API returned error ${response.status}: ${errorText}`);
     }
 
     let payload = await response.json();
@@ -236,23 +236,23 @@ Constraints:
             }
           ];
 
-          // Query DeepSeek again with the search results
-          console.log("Sending search results back to DeepSeek...");
-          const secondResponse = await fetch("https://api.deepseek.com/chat/completions", {
+          // Query Gemini again with the search results
+          console.log("Sending search results back to Gemini...");
+          const secondResponse = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
             method: "POST",
             headers: {
-              "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
+              "Authorization": `Bearer ${GEMINI_API_KEY}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              model: "deepseek-chat",
+              model: "gemini-2.5-flash",
               messages: secondRoundMessages
             })
           });
 
           if (!secondResponse.ok) {
             const errText = await secondResponse.text();
-            throw new Error(`DeepSeek second-round API failed: ${errText}`);
+            throw new Error(`Gemini second-round API failed: ${errText}`);
           }
 
           const secondPayload = await secondResponse.json();
@@ -305,13 +305,13 @@ Constraints:
       }
       
       if (fallbackReply) {
-        let warningText = "⚠️ *[Fallback Mode - DeepSeek API Insufficient Balance]*";
-        if (errorMessage.includes("402") || errorMessage.includes("Insufficient Balance")) {
-          warningText = "⚠️ *[DeepSeek API Out of Balance — Running in Resilient Fallback Mode]*";
+        let warningText = "⚠️ *[Fallback Mode - Gemini API Offline]*";
+        if (errorMessage.toLowerCase().includes("quota") || errorMessage.includes("429") || errorMessage.toLowerCase().includes("exhausted") || errorMessage.includes("402") || errorMessage.toLowerCase().includes("balance")) {
+          warningText = "⚠️ *[Gemini API Out of Balance/Quota — Running in Resilient Fallback Mode]*";
         }
         return NextResponse.json({
           success: true,
-          reply: `${warningText}\n\n${fallbackReply}\n\n*(Note: To enable full AI chat capabilities, please top up your DeepSeek account or update DEEPSEEK_API_KEY in .env.local)*`,
+          reply: `${warningText}\n\n${fallbackReply}\n\n*(Note: To enable full AI chat capabilities, please check your Gemini API key and quota/billing settings in .env.local)*`,
           searchQuery: "",
           searchResults: []
         });
@@ -321,8 +321,8 @@ Constraints:
     }
 
     let clientErrorMessage = errorMessage;
-    if (errorMessage.includes("402") || errorMessage.includes("Insufficient Balance")) {
-      clientErrorMessage = "DeepSeek API returned error 402: Insufficient Balance. Please top up your DeepSeek developer account or update the DEEPSEEK_API_KEY in your env file to restore full AI chat capabilities.";
+    if (errorMessage.toLowerCase().includes("quota") || errorMessage.includes("429") || errorMessage.toLowerCase().includes("exhausted") || errorMessage.includes("402") || errorMessage.toLowerCase().includes("balance")) {
+      clientErrorMessage = "Gemini API returned a quota or billing error. Please check your Gemini API key or billing settings in your env file to restore full AI chat capabilities.";
     }
 
     return NextResponse.json(
