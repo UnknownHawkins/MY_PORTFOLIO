@@ -19,9 +19,9 @@ export default function AdminNav() {
   const pathname = usePathname();
 
   const links = [
-    { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-    { href: "/admin/projects", label: "Projects", icon: FolderKanban },
-    { href: "/admin/messages", label: "Messages", icon: Mail },
+    { href: "/letsfuck", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/letsfuck/projects", label: "Projects", icon: FolderKanban },
+    { href: "/letsfuck/messages", label: "Messages", icon: Mail },
   ];
 
   const handleLogout = async () => {

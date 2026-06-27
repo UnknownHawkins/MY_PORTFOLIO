@@ -21,7 +21,7 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   // Get callback URL or default to admin dashboard
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
+  const callbackUrl = searchParams.get("callbackUrl") || "/letsfuck";
 
   const {
     register,
@@ -46,7 +46,7 @@ function LoginForm() {
       });
 
       if (result?.error) {
-        toast.error("Invalid credentials. Please verify your email and password.");
+        toast.error("Invalid credentials. Please verify your username/email and password.");
         console.error("Auth sign-in error:", result.error);
       } else {
         toast.success("Successfully logged in!");
@@ -94,13 +94,13 @@ function LoginForm() {
             <CardContent className="space-y-4 pb-6">
               {/* Email Input */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-300">Email Address</Label>
+                <Label htmlFor="email" className="text-slate-300">Username or Email</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4.5 w-4.5 text-slate-500" />
                   <Input
                     id="email"
-                    type="email"
-                    placeholder="name@example.com"
+                    type="text"
+                    placeholder="Enter your username or email"
                     className="pl-10 bg-slate-950/50 border-slate-800 text-white placeholder:text-slate-600 focus-visible:ring-blue-500/50 focus-visible:border-blue-500"
                     disabled={isLoading}
                     {...register("email")}

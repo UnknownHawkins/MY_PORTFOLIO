@@ -44,14 +44,14 @@ export default async function AdminDashboardPage() {
       value: projectCount,
       description: "Projects registered in the showcase",
       icon: <FolderKanban className="h-5 w-5 text-blue-400" />,
-      href: "/admin/projects",
+      href: "/letsfuck/projects",
     },
     {
       title: "Inbox Messages",
       value: messageCount,
       description: `${unreadCount} unread message(s) awaiting reply`,
       icon: <Mail className="h-5 w-5 text-indigo-400" />,
-      href: "/admin/messages",
+      href: "/letsfuck/messages",
     },
   ];
 
@@ -113,7 +113,7 @@ export default async function AdminDashboardPage() {
             </CardDescription>
           </div>
           <Link
-            href="/admin/messages"
+            href="/letsfuck/messages"
             className={cn(
               buttonVariants({ size: "sm" }),
               "bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded-lg cursor-pointer flex items-center justify-center"

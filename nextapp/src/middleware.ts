@@ -6,7 +6,7 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const isLoginPage = req.nextUrl.pathname.startsWith("/login");
-  const isAdminPage = req.nextUrl.pathname.startsWith("/admin");
+  const isAdminPage = req.nextUrl.pathname.startsWith("/letsfuck");
 
   if (isAdminPage && !isLoggedIn) {
     // Redirect to login if trying to access admin dashboard when not logged in
@@ -15,11 +15,11 @@ export default auth((req) => {
 
   if (isLoginPage && isLoggedIn) {
     // Redirect to admin dashboard if trying to access login page when already logged in
-    return Response.redirect(new URL("/admin", req.nextUrl));
+    return Response.redirect(new URL("/letsfuck", req.nextUrl));
   }
 });
 
 export const config = {
   // Run middleware on admin pages and login page
-  matcher: ["/admin/:path*", "/login"],
+  matcher: ["/letsfuck/:path*", "/login"],
 };

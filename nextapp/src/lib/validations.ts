@@ -28,7 +28,7 @@ export type ContactFormValues = z.infer<typeof ContactSchema>;
 
 // ── Authentication ─────────────────────────────────────────
 export const LoginSchema = z.object({
-  email: z.string().email("Please enter a valid email"),
+  email: z.string().min(3, "Please enter a valid email or username"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
