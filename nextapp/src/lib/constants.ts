@@ -253,7 +253,7 @@ export const PROJECTS: Project[] = [
 ];
 
 export const PROJECTS_SHOWCASE_URL =
-  "https://unknownhawkins.github.io/Projects-Showcase/";
+  "https://project-showcase-delta-sooty.vercel.app/";
 
 // ── GitHub Repos (static fallback) ────────────────────────
 export const GITHUB_REPOS: GitHubRepo[] = [
