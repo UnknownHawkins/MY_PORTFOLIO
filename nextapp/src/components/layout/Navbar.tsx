@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, ArrowUpRight, BookOpen } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
-import { NAV_LINKS, OWNER } from "@/lib/constants";
+import { NAV_LINKS, OWNER, PROJECTS_SHOWCASE_URL } from "@/lib/constants";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -101,7 +101,7 @@ export default function Navbar() {
           {/* Right Actions Toolbar */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="https://projects-showcase-eosin.vercel.app/"
+              href={PROJECTS_SHOWCASE_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={playClickSound}
@@ -132,7 +132,7 @@ export default function Navbar() {
           {/* Mobile Toolbar Toggle */}
           <div className="flex md:hidden items-center gap-3">
             <a
-              href="https://projects-showcase-eosin.vercel.app/"
+              href={PROJECTS_SHOWCASE_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={playClickSound}
