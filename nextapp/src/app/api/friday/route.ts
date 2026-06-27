@@ -277,8 +277,56 @@ Constraints:
   } catch (error) {
     console.error("Error in /api/friday API route:", error);
     const errorMessage = error instanceof Error ? error.message : "Something went wrong in Friday assistant.";
+    
+    // Attempt rule-based fallback for popular queries when API is offline/out of balance
+    try {
+      const reqClone = req.clone();
+      const body = await reqClone.json().catch(() => ({}));
+      const messages = body.messages || [];
+      const lastMessage = messages[messages.length - 1]?.content?.toLowerCase() || "";
+      
+      let fallbackReply = "";
+      
+      if (lastMessage.includes("who is mr. anubhav") || lastMessage.includes("who is anubhav") || lastMessage.includes("about anubhav") || lastMessage.includes("tell me about anubhav") || lastMessage.includes("who is mr. anubhav singh")) {
+        fallbackReply = `Mr. Anubhav Singh is a Pre Final-Year CS Engineering Student at GLA University, Mathura. He is a Python Developer, Cybersecurity Enthusiast, Web Developer, and Open Source Contributor. ${OWNER.bio}`;
+      } else if (lastMessage.includes("project") || lastMessage.includes("portfolio")) {
+        const projList = PROJECTS.map(p => `• **${p.title}**: ${p.description} (Tech: ${p.technologies.join(", ")})`).join("\n");
+        fallbackReply = `Here are some of Mr. Anubhav's projects:\n\n${projList}`;
+      } else if (lastMessage.includes("hobby") || lastMessage.includes("hobbies") || lastMessage.includes("lifestyle") || lastMessage.includes("cricket") || lastMessage.includes("anime") || lastMessage.includes("badminton") || lastMessage.includes("batminton")) {
+        fallbackReply = `Mr. Anubhav's hobbies include playing badminton, listening to music, watching movies, webseries, and anime. He lives alone and plays cricket as a batsman (because he is not good at bowling!).`;
+      } else if (lastMessage.includes("skill") || lastMessage.includes("technolog") || lastMessage.includes("languages") || lastMessage.includes("stack")) {
+        const skillList = SKILLS.map(s => s.name).join(", ");
+        fallbackReply = `Mr. Anubhav has experience in the following technical areas:\n\n${skillList}`;
+      } else if (lastMessage.includes("education") || lastMessage.includes("college") || lastMessage.includes("university") || lastMessage.includes("school")) {
+        const eduList = EDUCATION.map(e => `• **${e.degree}** from **${e.institution}** (${e.endYear || "Current"})`).join("\n");
+        fallbackReply = `Here is Mr. Anubhav's educational background:\n\n${eduList}`;
+      } else if (lastMessage.includes("who are you") || lastMessage.includes("friday") || lastMessage.includes("introduce")) {
+        fallbackReply = `Hey this is Friday Mr Anubhav Portfolio Website. Able to answer with about Mr Anubhav Singh and, his projects, techonologis that he used, about hobbies= play batminton, live alone, paly cricket as a batsman because he is not good at bowling, listening the music, watching movies,webseries, anime.`;
+      }
+      
+      if (fallbackReply) {
+        let warningText = "⚠️ *[Fallback Mode - DeepSeek API Insufficient Balance]*";
+        if (errorMessage.includes("402") || errorMessage.includes("Insufficient Balance")) {
+          warningText = "⚠️ *[DeepSeek API Out of Balance — Running in Resilient Fallback Mode]*";
+        }
+        return NextResponse.json({
+          success: true,
+          reply: `${warningText}\n\n${fallbackReply}\n\n*(Note: To enable full AI chat capabilities, please top up your DeepSeek account or update DEEPSEEK_API_KEY in .env.local)*`,
+          searchQuery: "",
+          searchResults: []
+        });
+      }
+    } catch (fallbackErr) {
+      console.error("Fallback generator error:", fallbackErr);
+    }
+
+    let clientErrorMessage = errorMessage;
+    if (errorMessage.includes("402") || errorMessage.includes("Insufficient Balance")) {
+      clientErrorMessage = "DeepSeek API returned error 402: Insufficient Balance. Please top up your DeepSeek developer account or update the DEEPSEEK_API_KEY in your env file to restore full AI chat capabilities.";
+    }
+
     return NextResponse.json(
-      { success: false, error: errorMessage },
+      { success: false, error: clientErrorMessage },
       { status: 500 }
     );
   }
