@@ -30,8 +30,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
+      suppressHydrationWarning
     >
-      <body className="bg-background text-foreground antialiased selection:bg-blue-500/30 selection:text-blue-200">
+      <body 
+        className="bg-background text-foreground antialiased selection:bg-blue-500/30 selection:text-blue-200"
+        suppressHydrationWarning
+      >
         <Providers>
           {children}
           <FridayChat />
