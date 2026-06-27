@@ -54,6 +54,7 @@ async function searchDuckDuckGo(query: string) {
 }
 
 export async function POST(req: NextRequest) {
+  let requestBody: any = null;
   try {
     // 1. Get IP address & apply rate limiting
     const forwarded = req.headers.get("x-forwarded-for");
@@ -70,6 +71,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Parse request body
     const body = await req.json();
+    requestBody = body;
     const { messages } = body;
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json(
@@ -280,9 +282,7 @@ Constraints:
     
     // Attempt rule-based fallback for popular queries when API is offline/out of balance
     try {
-      const reqClone = req.clone();
-      const body = await reqClone.json().catch(() => ({}));
-      const messages = body.messages || [];
+      const messages = requestBody?.messages || [];
       const lastMessage = messages[messages.length - 1]?.content?.toLowerCase() || "";
       
       let fallbackReply = "";
