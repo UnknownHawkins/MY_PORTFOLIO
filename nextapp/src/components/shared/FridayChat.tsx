@@ -19,7 +19,7 @@ export default function FridayChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "friday",
-      content: "Hey this is Friday Mr Anubhav Portfolio Website. Able to answer with about Mr Anubhav Singh and , his projects, techonologis that he used, about hobbies= play batminton, live alone, paly cricket as a batsman because he is not good at bowling, listening the music, watching movies,webseries, anime,"
+      content: "Hey this is Friday Mr Anubhav Portfolio Website. Able to answer with about Mr Anubhav Singh and, his projects, technologies that he used, about hobbies."
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
