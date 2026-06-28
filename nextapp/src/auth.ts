@@ -43,14 +43,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         // Static fallback if DB is down or empty, matching local development default env variables
-        console.log("AUTH DEBUG: Comparing credentials", {
-          inputEmail: emailStr,
-          envEmail: adminEmail,
-          emailMatch: emailStr === adminEmail,
-          inputPassword: passwordStr,
-          envPassword: adminPassword,
-          passwordMatch: passwordStr === adminPassword
-        });
+        console.log("AUTH DEBUG: Checking fallback credentials match");
 
         if (emailStr === adminEmail && passwordStr === adminPassword) {
           return {

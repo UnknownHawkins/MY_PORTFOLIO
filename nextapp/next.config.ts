@@ -4,6 +4,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Disable X-Powered-By header for security
+  poweredByHeader: false,
+
   // Enable standalone build for Docker
   output: "standalone",
 
@@ -61,11 +64,35 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
+            value: "strict-origin-when-cross-origin",
           },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self';",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
+              "style-src 'self' 'unsafe-inline';",
+              "img-src 'self' blob: data: https://avatars.githubusercontent.com https://github.com https://raw.githubusercontent.com https://opengraph.githubassets.com;",
+              "font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;",
+              "connect-src 'self';",
+              "object-src 'none';",
+              "base-uri 'self';",
+              "form-action 'self';",
+              "frame-ancestors 'none';",
+              "upgrade-insecure-requests;",
+            ].join(" "),
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+          {
+            key: "Cross-Origin-Resource-Policy",
+            value: "same-origin",
           },
         ],
       },
