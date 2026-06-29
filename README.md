@@ -1,4 +1,4 @@
-# Anubhav Singh | Premium Full-Stack Portfolio Platform
+# Anubhav Singh |Full-Stack Portfolio Platform
 
 Transforming a static portfolio into a production-ready, full-stack software engineer developer platform. Built using Next.js 15, React 19, TypeScript, Tailwind CSS v4, shadcn/ui, Prisma, and PostgreSQL.
 
