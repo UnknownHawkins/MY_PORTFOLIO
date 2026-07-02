@@ -106,10 +106,12 @@ export default function FridayChat() {
   };
 
   const recommendedPrompts = [
-    { label: "About Mr. Anubhav", text: "Who is Mr. Anubhav Singh?" },
-    { label: "Projects & Tech", text: "What projects has Mr. Anubhav worked on and what technologies did he use?" },
-    { label: "Hobbies & Lifestyle", text: "Tell me about Mr. Anubhav's hobbies and lifestyle." },
-    { label: "Search Tech News", text: "Search the web for the latest major news in artificial intelligence and tech." },
+    { label: "Skills & Proficiency", text: "Tell me all of Mr. Anubhav's technical skills along with their exact proficiency levels." },
+    { label: "Live GitHub Repos", text: "Show me Mr. Anubhav's live GitHub profile stats and top repositories." },
+    { label: "Blogs & Stories", text: "What blog posts and stories has Mr. Anubhav written?" },
+    { label: "Education & Degree", text: "What is Mr. Anubhav's educational background and graduation status?" },
+    { label: "Work Experience", text: "Tell me about Mr. Anubhav's internships and work experience." },
+    { label: "Search Tech News", text: "Search the web for the latest news in artificial intelligence and tech." },
   ];
 
   return (
