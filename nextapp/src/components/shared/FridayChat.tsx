@@ -13,6 +13,67 @@ interface Message {
   searchResults?: { title: string; url: string; snippet: string }[];
 }
 
+// ── Smart Auto-Formatting & Text Wrapping Renderer ───────────────────────────
+function FormattedContent({ content }: { content: string }) {
+  // Helper to format inline markdown bold (**text**) and URLs into clickable links
+  const formatInline = (text: string) => {
+    // Regex matching **bold** or URLs
+    const parts = text.split(/(\*\*[^*]+\*\*|https?:\/\/[^\s]+)/g);
+
+    return parts.map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+        return (
+          <strong key={index} className="font-semibold text-slate-900 dark:text-white">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      if (part.match(/^https?:\/\/[^\s]+/)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:text-blue-500 transition-colors break-all inline-flex items-baseline gap-0.5 font-medium"
+          >
+            {part}
+            <ExternalLink className="w-2.5 h-2.5 inline shrink-0 opacity-80" />
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
+  const lines = content.split("\n");
+
+  return (
+    <div className="space-y-1.5 break-words [overflow-wrap:anywhere] [word-break:break-word] min-w-0">
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) return <div key={idx} className="h-1" />;
+
+        if (trimmed.startsWith("* ") || trimmed.startsWith("• ")) {
+          const bulletText = trimmed.replace(/^(\* |• )/, "");
+          return (
+            <div key={idx} className="flex gap-2 items-start pl-1 min-w-0">
+              <span className="text-blue-500 font-bold select-none shrink-0">•</span>
+              <div className="flex-1 min-w-0 leading-relaxed">{formatInline(bulletText)}</div>
+            </div>
+          );
+        }
+
+        return (
+          <p key={idx} className="leading-relaxed min-w-0">
+            {formatInline(line)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function FridayChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -26,10 +87,11 @@ export default function FridayChat() {
     setMessages([
       {
         role: "friday",
-        content: `Hey this is ${today} Mr Anubhav Portfolio Website. Able to answer with about Mr Anubhav Singh and, his projects, technologies that he used, about hobbies. My name changes automatically every day—today I'm ${today}!`,
+        content: `Hey this is ${today} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his projects, skills with proficiency levels, GitHub repositories, and hobbies. My name changes automatically every day—today I'm ${today}!`,
       },
     ]);
   }, []);
+
   const [isLoading, setIsLoading] = useState(false);
   const [searchStatus, setSearchStatus] = useState<string | null>(null);
 
@@ -57,7 +119,7 @@ export default function FridayChat() {
 
     playClickSound();
     setInput("");
-    
+
     // Add user message
     const updatedMessages: Message[] = [...messages, { role: "user", content: trimmed }];
     setMessages(updatedMessages);
@@ -65,47 +127,45 @@ export default function FridayChat() {
     setSearchStatus(null);
 
     try {
-      // We pass the history to the backend endpoint
       const response = await fetch("/api/friday", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: updatedMessages.map(m => ({
+          messages: updatedMessages.map((m) => ({
             role: m.role === "user" ? "user" : "assistant",
-            content: m.content
-          }))
-        })
+            content: m.content,
+          })),
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to communicate with Friday.");
+        throw new Error(data.error || `Failed to communicate with ${assistantName}.`);
       }
 
-      // If search was executed, show what was queried
       if (data.searchQuery) {
         setSearchStatus(`Searched: "${data.searchQuery}"`);
       }
 
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
         {
           role: "friday",
           content: data.reply,
           searchQuery: data.searchQuery || undefined,
-          searchResults: data.searchResults || undefined
-        }
+          searchResults: data.searchResults || undefined,
+        },
       ]);
     } catch (err) {
       console.error(err);
       const errorMessage = err instanceof Error ? err.message : "Unknown error";
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
         {
           role: "friday",
-          content: `I ran into an issue connecting to my core services: ${errorMessage}. Please make sure my API key is configured.`
-        }
+          content: `I ran into an issue connecting to my core services: ${errorMessage}.`,
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -134,9 +194,8 @@ export default function FridayChat() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {/* Glow backdrop inside button */}
         <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {isOpen ? (
           <X className="w-6 h-6 transition-transform rotate-0 duration-300" />
         ) : (
@@ -155,14 +214,14 @@ export default function FridayChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="absolute bottom-18 right-0 w-[350px] sm:w-[400px] h-[550px] bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden select-text"
+            className="absolute bottom-18 right-0 w-[350px] sm:w-[420px] h-[580px] bg-white/90 dark:bg-slate-950/90 backdrop-blur-2xl border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden select-text"
           >
-            {/* Glowing background highlights */}
+            {/* Background highlights */}
             <div className="absolute top-0 left-1/4 w-32 h-32 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
 
             {/* Header */}
-            <div className="p-4 border-b border-slate-200/60 dark:border-slate-900/60 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/40 relative z-10">
+            <div className="p-4 border-b border-slate-200/60 dark:border-slate-900/60 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/40 relative z-10 shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-blue-500/10 dark:bg-blue-500/20 border border-blue-500/30 flex items-center justify-center relative">
                   <Sparkles className="w-4.5 h-4.5 text-blue-500 dark:text-blue-400" />
@@ -177,7 +236,7 @@ export default function FridayChat() {
                   </span>
                 </div>
               </div>
-              
+
               <button
                 onClick={handleToggle}
                 onMouseEnter={playHoverSound}
@@ -187,20 +246,20 @@ export default function FridayChat() {
               </button>
             </div>
 
-            {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin relative z-10">
+            {/* Messages Area — NO HORIZONTAL SCROLLBAR */}
+            <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-4 scrollbar-thin relative z-10">
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
                   className={cn(
-                    "flex gap-2.5 max-w-[85%] animate-fade-in-up",
+                    "flex gap-2.5 max-w-[90%] min-w-0 animate-fade-in-up",
                     msg.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
                   )}
                 >
                   {/* Icon Profile */}
                   <div
                     className={cn(
-                      "w-7 h-7 rounded-full flex items-center justify-center text-[10px] shrink-0 shadow-sm border",
+                      "w-7 h-7 rounded-full flex items-center justify-center text-[10px] shrink-0 shadow-sm border mt-0.5",
                       msg.role === "user"
                         ? "bg-slate-100 border-slate-200 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-400"
                         : "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400"
@@ -210,39 +269,39 @@ export default function FridayChat() {
                   </div>
 
                   {/* Bubble Container */}
-                  <div className="space-y-1.5">
+                  <div className="space-y-1.5 min-w-0 flex-1">
                     <div
                       className={cn(
-                        "p-3 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm",
+                        "p-3 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm min-w-0 break-words [overflow-wrap:anywhere] [word-break:break-word]",
                         msg.role === "user"
                           ? "bg-blue-600 text-white rounded-tr-none"
-                          : "bg-slate-100/80 dark:bg-slate-900/40 text-slate-800 dark:text-slate-200 border border-slate-200/50 dark:border-slate-900/60 rounded-tl-none"
+                          : "bg-slate-100/90 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 border border-slate-200/70 dark:border-slate-800/80 rounded-tl-none"
                       )}
                     >
-                      {msg.content}
+                      <FormattedContent content={msg.content} />
                     </div>
 
-                    {/* If search results are present, render source cards */}
+                    {/* Web Search References */}
                     {msg.searchResults && msg.searchResults.length > 0 && (
-                      <div className="space-y-1 pl-1">
+                      <div className="space-y-1 pl-1 min-w-0">
                         <span className="text-[9px] font-bold text-slate-400 tracking-wider flex items-center gap-1 uppercase select-none">
                           <Search className="w-2.5 h-2.5 text-blue-500" />
                           Web References:
                         </span>
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-1 min-w-0">
                           {msg.searchResults.map((ref, rIdx) => (
                             <a
                               key={rIdx}
                               href={ref.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block p-2 rounded-lg bg-slate-100/40 dark:bg-slate-950/20 border border-slate-200/40 dark:border-slate-900/40 hover:border-blue-500/30 hover:bg-slate-200/20 dark:hover:bg-slate-900/20 transition-all text-[10px] text-slate-500 dark:text-slate-400 font-medium"
+                              className="block p-2 rounded-lg bg-slate-100/40 dark:bg-slate-950/20 border border-slate-200/40 dark:border-slate-900/40 hover:border-blue-500/30 hover:bg-slate-200/20 dark:hover:bg-slate-900/20 transition-all text-[10px] text-slate-500 dark:text-slate-400 font-medium min-w-0"
                             >
-                              <div className="font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between gap-1 line-clamp-1">
+                              <div className="font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between gap-1 line-clamp-1 min-w-0">
                                 {ref.title}
                                 <ExternalLink className="w-2.5 h-2.5 text-slate-400 shrink-0" />
                               </div>
-                              <p className="line-clamp-2 mt-0.5 text-slate-400 dark:text-slate-500 font-normal">
+                              <p className="line-clamp-2 mt-0.5 text-slate-400 dark:text-slate-500 font-normal break-all">
                                 {ref.snippet}
                               </p>
                             </a>
@@ -256,21 +315,21 @@ export default function FridayChat() {
 
               {/* Loader */}
               {isLoading && (
-                <div className="flex gap-2.5 mr-auto max-w-[85%] items-center animate-pulse">
+                <div className="flex gap-2.5 mr-auto max-w-[88%] min-w-0 items-center animate-pulse">
                   <div className="w-7 h-7 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 flex items-center justify-center shrink-0">
                     <Sparkles className="w-3.5 h-3.5 animate-spin" />
                   </div>
-                  
-                  <div className="p-3 rounded-2xl bg-slate-100/80 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-900/60 rounded-tl-none flex items-center gap-1.5">
+
+                  <div className="p-3 rounded-2xl bg-slate-100/80 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-900/60 rounded-tl-none flex items-center gap-1.5 min-w-0">
                     <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5 select-none">
                       {searchStatus ? (
                         <>
-                          <Search className="w-3 h-3 text-blue-500 animate-bounce" />
+                          <Search className="w-3 h-3 text-blue-500 animate-bounce shrink-0" />
                           Searching the internet...
                         </>
                       ) : (
                         <>
-                          <RefreshCw className="w-3 h-3 text-blue-500 animate-spin" />
+                          <RefreshCw className="w-3 h-3 text-blue-500 animate-spin shrink-0" />
                           Synthesizing reply...
                         </>
                       )}
@@ -282,9 +341,9 @@ export default function FridayChat() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Suggested prompts list (only shows when not loading) */}
+            {/* Suggested prompts list */}
             {messages.length === 1 && !isLoading && (
-              <div className="px-4 pb-2 pt-1 border-t border-slate-200/30 dark:border-slate-900/30 bg-slate-50/20 dark:bg-slate-950/20 relative z-10">
+              <div className="px-4 pb-2 pt-1 border-t border-slate-200/30 dark:border-slate-900/30 bg-slate-50/20 dark:bg-slate-950/20 relative z-10 shrink-0">
                 <span className="text-[9px] font-bold text-slate-400 tracking-wider uppercase block mb-1.5 select-none">
                   Quick Actions:
                 </span>
@@ -309,7 +368,7 @@ export default function FridayChat() {
                 e.preventDefault();
                 handleSend(input);
               }}
-              className="p-3 border-t border-slate-200/60 dark:border-slate-900/60 bg-slate-50/80 dark:bg-slate-950/60 flex items-center gap-2 relative z-10"
+              className="p-3 border-t border-slate-200/60 dark:border-slate-900/60 bg-slate-50/80 dark:bg-slate-950/60 flex items-center gap-2 relative z-10 shrink-0"
             >
               <input
                 type="text"
