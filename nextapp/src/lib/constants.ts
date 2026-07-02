@@ -258,7 +258,29 @@ export const PROJECTS_SHOWCASE_URL =
   "https://project-showcase-delta-sooty.vercel.app/";
 
 // ── Fallback Blog Data ─────────────────────────────────────
-export const BLOGS: Blog[] = [];
+export const BLOGS: Blog[] = [
+  {
+    id: "the-myth-code-part-1",
+    title: "The Myth Code",
+    partNo: "PART 1: THE SIGNAL",
+    author: "Anubhav Singh",
+    createdAt: new Date("2026-07-02T23:05:00.000Z"),
+    updatedAt: new Date("2026-07-02T23:05:00.000Z"),
+    content: `It was a cold Friday evening in Hawkins. The weather was calm, and the streets were unusually quiet. Mike, Dustin, Lucas, Max, Will, and Eleven had gathered in Dustin's basement, as they often did after school. Dustin had been working on a secret project for almost a month. Using old military radio parts, a powerful computer, and an AI program that he had written himself, he was trying to detect unusual radio signals that ordinary devices could not receive.
+
+Mike looked at the strange machine and laughed. "You've spent weeks on this, Dustin. All we ever hear is static."
+
+"It's not just static, Mike," Dustin replied, adjusting a frequency knob. "Look at the wave patterns. They repeat every 47 seconds. That isn't random noise. It's encoded."
+
+Eleven walked closer to the speaker, her eyes focused on the glowing digital frequency. She placed her hand gently on the radio casing and whispered, "It feels... much older."
+
+At that exact moment, televisions across Hawkins suddenly lost their signal. Radio stations went silent. GPS systems in several nearby towns stopped working for a few minutes, and pilots reported strange navigation problems while flying overhead. Scientists first believed it was a technical failure, but they quickly realized that the same unknown signal had been detected in different parts of the world.
+
+Late that night, Dustin stayed awake while the others slept. He searched government databases, old research papers, and forgotten archives, hoping to find something connected to the Himalayas. After hours of searching, one classified file suddenly appeared on his screen.
+
+Its title was simple: THE MYTH CODE.`,
+  },
+];
 
 // ── GitHub Repos (static fallback) ────────────────────────
 export const GITHUB_REPOS: GitHubRepo[] = [

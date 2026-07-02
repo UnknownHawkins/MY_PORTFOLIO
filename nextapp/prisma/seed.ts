@@ -139,9 +139,21 @@ async function main() {
   }
   console.log(`Seeded ${EXPERIENCE.length} experience entries.`);
 
-  // 6.5. Clear Blogs (no seeding demo data)
-  console.log("Clearing blogs...");
+  // 6.5. Seed Blogs
+  console.log("Seeding blogs...");
   await prisma.blog.deleteMany();
+  for (const blog of BLOGS) {
+    await prisma.blog.create({
+      data: {
+        id: blog.id,
+        title: blog.title,
+        partNo: blog.partNo,
+        content: blog.content,
+        author: blog.author,
+      },
+    });
+  }
+  console.log(`Seeded ${BLOGS.length} blogs.`);
 
   // 7. Seed Settings (Site Config)
   console.log("Seeding settings...");
