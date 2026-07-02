@@ -20,6 +20,9 @@ import GitHub from "@/components/sections/GitHub";
 import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
 
+import { getRepositories } from "@/lib/github";
+import { PROJECTS } from "@/lib/constants";
+
 // Dynamic page revalidation — fetch fresh content directly from DB
 export const revalidate = 0;
 
@@ -66,6 +69,36 @@ export default async function HomePage() {
     }
   } else {
     console.log("Database not configured. Using static constants on homepage.");
+  }
+
+  // Live Sync: Fetch repositories via GitHub Token / API and enrich liveUrl for projects with GitHub homepage links
+  try {
+    const ghRepos = await getRepositories();
+    const activeProjects = projects || PROJECTS;
+    
+    const enrichedProjects = activeProjects.map((proj) => {
+      const matchedRepo = ghRepos.find((r) => {
+        if (!r.homepage || !r.homepage.startsWith("http")) return false;
+        const repoName = r.name.toLowerCase();
+        const projId = proj.id.toLowerCase();
+        const projTitle = proj.title.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const cleanRepoName = repoName.replace(/[^a-z0-9]/g, "");
+        return (
+          r.htmlUrl?.toLowerCase() === proj.githubUrl?.toLowerCase() ||
+          repoName === projId ||
+          cleanRepoName === projTitle ||
+          (proj.githubUrl && proj.githubUrl.toLowerCase().includes(repoName))
+        );
+      });
+      if (matchedRepo && matchedRepo.homepage) {
+        return { ...proj, liveUrl: matchedRepo.homepage };
+      }
+      return proj;
+    });
+
+    projects = enrichedProjects;
+  } catch (ghErr) {
+    console.log("GitHub live URL sync notice:", ghErr);
   }
 
   return (
