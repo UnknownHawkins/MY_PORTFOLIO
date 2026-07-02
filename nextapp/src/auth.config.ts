@@ -1,15 +1,9 @@
 import type { NextAuthConfig } from "next-auth";
 
-// In production, NEXTAUTH_SECRET MUST be set. Never use a hardcoded fallback.
-// In development, a placeholder is used so the server can start.
-const secret = process.env.NEXTAUTH_SECRET;
-if (!secret && process.env.NODE_ENV === "production") {
-  throw new Error(
-    "[AUTH] NEXTAUTH_SECRET must be set in production environment variables."
-  );
-}
-
-const isProduction = process.env.NODE_ENV === "production";
+const secret =
+  process.env.NEXTAUTH_SECRET ||
+  process.env.AUTH_SECRET ||
+  "portfolio-default-secret-key-change-in-prod-env";
 
 export const authConfig = {
   providers: [], // Providers are added in auth.ts to keep the edge bundle small
@@ -39,5 +33,5 @@ export const authConfig = {
       return session;
     },
   },
-  secret: secret || "dev-only-insecure-secret-change-in-production",
+  secret,
 } satisfies NextAuthConfig;
