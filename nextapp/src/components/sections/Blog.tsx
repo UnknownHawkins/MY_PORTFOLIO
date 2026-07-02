@@ -187,10 +187,13 @@ export default function BlogSection({ initialBlogs }: BlogSectionProps) {
                           <div className="flex items-center gap-1.5">
                             <Calendar className="h-3.5 w-3.5 text-slate-400" />
                             <span>
-                              {new Date(blog.updatedAt).toLocaleDateString("en-US", {
+                              {new Date(blog.updatedAt).toLocaleString("en-US", {
                                 month: "short",
                                 day: "numeric",
                                 year: "numeric",
+                                hour: "numeric",
+                                minute: "2-digit",
+                                hour12: true,
                               })}
                             </span>
                           </div>
@@ -337,10 +340,13 @@ export default function BlogSection({ initialBlogs }: BlogSectionProps) {
                           }}
                         >
                           <Calendar size={13} style={{ color: "#2563eb" }} />
-                          {new Date(selectedBlog.updatedAt).toLocaleDateString("en-US", {
+                          {new Date(selectedBlog.updatedAt).toLocaleString("en-US", {
                             month: "long",
                             day: "numeric",
                             year: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
                           })}
                         </span>
                       </div>
