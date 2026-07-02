@@ -16,12 +16,20 @@ interface Message {
 export default function FridayChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "friday",
-      content: "Hey this is Friday Mr Anubhav Portfolio Website. Able to answer with about Mr Anubhav Singh and, his projects, technologies that he used, about hobbies."
-    }
-  ]);
+  const [assistantName, setAssistantName] = useState("Friday");
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const today = days[new Date().getDay()];
+    setAssistantName(today);
+    setMessages([
+      {
+        role: "friday",
+        content: `Hey this is ${today} Mr Anubhav Portfolio Website. Able to answer with about Mr Anubhav Singh and, his projects, technologies that he used, about hobbies. My name changes automatically every day—today I'm ${today}!`,
+      },
+    ]);
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   const [searchStatus, setSearchStatus] = useState<string | null>(null);
 
@@ -162,7 +170,7 @@ export default function FridayChat() {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-800 dark:text-white text-sm tracking-wide flex items-center gap-1.5">
-                    Friday
+                    {assistantName}
                   </h4>
                   <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest block">
                     AI Assistant
@@ -307,7 +315,7 @@ export default function FridayChat() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask Friday anything..."
+                placeholder={`Ask ${assistantName} anything...`}
                 disabled={isLoading}
                 className="flex-grow px-3 py-2 text-xs sm:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500/50 dark:focus:ring-blue-500/50 focus:border-blue-500 text-slate-800 dark:text-slate-100 disabled:opacity-50 disabled:cursor-not-allowed shadow-inner"
               />

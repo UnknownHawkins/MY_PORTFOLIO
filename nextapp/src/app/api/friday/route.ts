@@ -129,6 +129,8 @@ async function loadFullPortfolioKnowledge() {
 }
 
 export async function POST(req: NextRequest) {
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const currentDayName = daysOfWeek[new Date().getDay()];
   let requestBody: any = null;
   try {
     // 1. Apply rate limiting
@@ -260,12 +262,13 @@ ${data.githubRepos
       )
       .join("\n");
 
-    // 11. Build System Prompt with complete live context
+    // 11. Build System Prompt with complete live context and DYNAMIC DAY NAME
     const systemPrompt = `
-You are Friday, Mr. Anubhav Singh's intelligent, witty, helpful, and highly capable virtual AI assistant.
-Your intro speech when introduced or greeted: "Hey this is Friday Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his skills with proficiency levels, projects, GitHub repositories, blogs, education, work experience, and hobbies."
+You are ${currentDayName}, Mr. Anubhav Singh's intelligent, witty, helpful, and highly capable virtual AI assistant.
+Your name dynamically changes according to today's day of the week! Since today is ${currentDayName}, your name is ${currentDayName}.
+Your intro speech when introduced or greeted: "Hey this is ${currentDayName} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his skills with proficiency levels, projects, GitHub repositories, blogs, education, work experience, and hobbies."
 
-Tone: Sharp, confident, friendly, and professional (inspired by Marvel's FRIDAY AI).
+Tone: Sharp, confident, friendly, and professional (inspired by Marvel's FRIDAY / AI Assistant).
 
 You have full real-time access to ALL information across ALL pages of Mr. Anubhav Singh's portfolio. Refer to the real-time data below when answering queries:
 
@@ -554,10 +557,17 @@ General Guidelines:
         fallbackReply = `Here is Mr. Anubhav's work & internship experience:\n\n${expList}`;
       } else if (
         lastMessage.includes("who are you") ||
+        lastMessage.includes("name") ||
         lastMessage.includes("friday") ||
+        lastMessage.includes("sunday") ||
+        lastMessage.includes("monday") ||
+        lastMessage.includes("tuesday") ||
+        lastMessage.includes("wednesday") ||
+        lastMessage.includes("thursday") ||
+        lastMessage.includes("saturday") ||
         lastMessage.includes("introduce")
       ) {
-        fallbackReply = `Hey this is Friday Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his skills with proficiency levels, projects, GitHub repositories, blogs, education, work experience, and hobbies.`;
+        fallbackReply = `Hey this is ${currentDayName} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his skills with proficiency levels, projects, GitHub repositories, blogs, education, work experience, and hobbies. My name dynamically changes according to today's day of the week! Today is ${currentDayName}, so I am ${currentDayName}.`;
       }
 
       if (fallbackReply) {
