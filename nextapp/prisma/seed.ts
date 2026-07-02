@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import {
   PROJECTS,
@@ -9,9 +8,9 @@ import {
   OWNER,
   CONTACT_INFO,
   SOCIAL_LINKS,
+  BLOGS,
 } from "../src/lib/constants";
-
-const prisma = new PrismaClient();
+import prisma from "../src/lib/db";
 
 async function main() {
   console.log("Starting seeding...");
@@ -20,24 +19,20 @@ async function main() {
   const adminEmail = process.env.ADMIN_EMAIL || "jonsnower07@gmail.com";
   const adminPassword = process.env.ADMIN_PASSWORD || "change-me-after-first-login";
   
-  console.log(`Checking/Creating admin user: ${adminEmail}`);
-  const existingUser = await prisma.user.findUnique({
+  console.log(`Creating/Updating admin user: ${adminEmail}`);
+  const hashedPassword = await bcrypt.hash(adminPassword, 10);
+  await prisma.user.upsert({
     where: { email: adminEmail },
+    update: {
+      password: hashedPassword,
+    },
+    create: {
+      email: adminEmail,
+      password: hashedPassword,
+      role: "admin",
+    },
   });
-
-  if (!existingUser) {
-    const hashedPassword = await bcrypt.hash(adminPassword, 10);
-    await prisma.user.create({
-      data: {
-        email: adminEmail,
-        password: hashedPassword,
-        role: "admin",
-      },
-    });
-    console.log("Admin user seeded successfully!");
-  } else {
-    console.log("Admin user already exists, skipping user seed.");
-  }
+  console.log("Admin user seeded/updated successfully!");
 
   // 2. Seed Skills
   console.log("Seeding skills...");
@@ -143,6 +138,10 @@ async function main() {
     });
   }
   console.log(`Seeded ${EXPERIENCE.length} experience entries.`);
+
+  // 6.5. Clear Blogs (no seeding demo data)
+  console.log("Clearing blogs...");
+  await prisma.blog.deleteMany();
 
   // 7. Seed Settings (Site Config)
   console.log("Seeding settings...");

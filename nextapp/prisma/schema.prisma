@@ -2,13 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -29,9 +29,9 @@ model Project {
   id              String   @id @default(uuid())
   title           String
   description     String
-  longDescription String?  @db.Text
-  tags            String[]
-  technologies    String[]
+  longDescription String?
+  tags            Json
+  technologies    Json
   githubUrl       String?
   liveUrl         String?
   imageUrl        String?
@@ -64,9 +64,9 @@ model Experience {
   endDate      String?
   current      Boolean  @default(false)
   location     String?
-  description  String?  @db.Text
-  bullets      String[]
-  technologies String[]
+  description  String?
+  bullets      Json
+  technologies Json
   icon         String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -105,7 +105,7 @@ model ContactMessage {
   name      String
   email     String
   phone     String?
-  message   String   @db.Text
+  message   String
   read      Boolean  @default(false)
   ipAddress String?
   createdAt DateTime @default(now())
@@ -124,13 +124,23 @@ model Analytics {
 model Settings {
   id        String   @id @default(uuid())
   key       String   @unique
-  value     String   @db.Text
+  value     String
   updatedAt DateTime @updatedAt
 }
 
 model GitHubCache {
   id        String   @id @default(uuid())
   key       String   @unique
-  data      String   @db.Text // JSON stringified cache data
+  data      String // JSON stringified cache data
   expiresAt DateTime
+}
+
+model Blog {
+  id        String   @id @default(uuid())
+  title     String
+  partNo    String
+  content   String
+  author    String   @default("Anubhav Singh")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

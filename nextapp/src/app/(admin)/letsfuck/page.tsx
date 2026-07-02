@@ -1,24 +1,32 @@
 import React from "react";
 import Link from "next/link";
-import { FolderKanban, Mail, MailOpen, ShieldCheck, ArrowRight, Calendar, User } from "lucide-react";
+import { FolderKanban, Mail, MailOpen, ShieldCheck, ArrowRight, Calendar, User, FileText } from "lucide-react";
 import prisma from "@/lib/db";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { timeAgo, cn } from "@/lib/utils";
+import { auth } from "@/auth";
+import LoginForm from "@/components/admin/LoginForm";
 
 // Prevent layout caching to ensure fresh metrics
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
+  const session = await auth();
+
+  if (!session) {
+    return <LoginForm />;
+  }
   let projectCount = 0;
   let messageCount = 0;
   let unreadCount = 0;
+  let blogCount = 0;
   let recentMessages: any[] = [];
   let databaseStatus = "Disconnected (Offline Fallback)";
 
-  if (process.env.DATABASE_URL) {
+  if (process.env.TURSO_DATABASE_URL) {
     try {
-      const [dbProjects, dbMessages, dbUnread, dbRecent] = await Promise.all([
+      const [dbProjects, dbMessages, dbUnread, dbRecent, dbBlogs] = await Promise.all([
         prisma.project.count(),
         prisma.contactMessage.count(),
         prisma.contactMessage.count({ where: { read: false } }),
@@ -26,13 +34,15 @@ export default async function AdminDashboardPage() {
           orderBy: { createdAt: "desc" },
           take: 5,
         }),
+        prisma.blog.count(),
       ]);
 
       projectCount = dbProjects;
       messageCount = dbMessages;
       unreadCount = dbUnread;
       recentMessages = dbRecent;
-      databaseStatus = "Connected (Neon Database)";
+      blogCount = dbBlogs;
+      databaseStatus = "Connected (Turso Database)";
     } catch (dbError) {
       console.error("Dashboard database metrics failed:", dbError);
     }
@@ -45,6 +55,13 @@ export default async function AdminDashboardPage() {
       description: "Projects registered in the showcase",
       icon: <FolderKanban className="h-5 w-5 text-blue-400" />,
       href: "/letsfuck/projects",
+    },
+    {
+      title: "Total Blogs",
+      value: blogCount,
+      description: "Articles published on the website",
+      icon: <FileText className="h-5 w-5 text-emerald-400" />,
+      href: "/letsfuck/blogs",
     },
     {
       title: "Inbox Messages",
@@ -68,13 +85,13 @@ export default async function AdminDashboardPage() {
 
         {/* Database Status Badge */}
         <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 w-fit">
-          <span className={`w-2 h-2 rounded-full ${process.env.DATABASE_URL ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`} />
+          <span className={`w-2 h-2 rounded-full ${process.env.TURSO_DATABASE_URL ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`} />
           DB: {databaseStatus}
         </div>
       </div>
 
       {/* Stats Cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {statCards.map((card) => (
           <Card key={card.title} className="bg-slate-900/40 border-slate-900 hover:border-slate-800/80 transition-all">
             <CardHeader className="flex flex-row items-center justify-between pb-2">

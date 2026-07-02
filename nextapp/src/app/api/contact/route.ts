@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
     // 3. Save to Database (if available)
     let savedMessage = null;
-    const dbConnected = !!process.env.DATABASE_URL;
+    const dbConnected = !!process.env.TURSO_DATABASE_URL;
 
     if (dbConnected) {
       try {
@@ -116,7 +116,6 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       message: "Your message has been sent successfully!",
-      data: savedMessage,
     });
   } catch (error: any) {
     console.error("API error in /api/contact:", error);

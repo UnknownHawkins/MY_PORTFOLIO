@@ -10,6 +10,7 @@ import {
   EducationSchema,
   CertificationSchema,
   SettingsSchema,
+  BlogSchema,
 } from "@/lib/validations";
 
 /**
@@ -117,7 +118,10 @@ export async function createExperience(formData: any) {
   }
 
   const exp = await prisma.experience.create({
-    data: parsed.data,
+    data: {
+      ...parsed.data,
+      technologies: parsed.data.technologies || [],
+    },
   });
 
   revalidatePath("/");
@@ -134,7 +138,10 @@ export async function updateExperience(id: string, formData: any) {
 
   const exp = await prisma.experience.update({
     where: { id },
-    data: parsed.data,
+    data: {
+      ...parsed.data,
+      technologies: parsed.data.technologies || [],
+    },
   });
 
   revalidatePath("/");
@@ -291,5 +298,51 @@ export async function updateSettings(formData: any) {
 
   revalidatePath("/");
   revalidatePath("/admin/settings");
+  return { success: true };
+}
+
+// ── BLOG CRUD ─────────────────────────────────────────────
+
+export async function createBlog(formData: any) {
+  await assertAdmin();
+  const parsed = BlogSchema.safeParse(formData);
+  if (!parsed.success) {
+    throw new Error(parsed.error.issues[0]?.message || "Invalid blog data");
+  }
+
+  const blog = await prisma.blog.create({
+    data: parsed.data,
+  });
+
+  revalidatePath("/");
+  revalidatePath("/letsfuck/blogs");
+  return { success: true, data: blog };
+}
+
+export async function updateBlog(id: string, formData: any) {
+  await assertAdmin();
+  const parsed = BlogSchema.safeParse(formData);
+  if (!parsed.success) {
+    throw new Error(parsed.error.issues[0]?.message || "Invalid blog data");
+  }
+
+  const blog = await prisma.blog.update({
+    where: { id },
+    data: parsed.data,
+  });
+
+  revalidatePath("/");
+  revalidatePath("/letsfuck/blogs");
+  return { success: true, data: blog };
+}
+
+export async function deleteBlog(id: string) {
+  await assertAdmin();
+  await prisma.blog.delete({
+    where: { id },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/letsfuck/blogs");
   return { success: true };
 }

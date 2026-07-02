@@ -1,0 +1,6 @@
+.env
+.env*
+*.db
+*.sqlite
+node_modules/
+.next/

@@ -5,21 +5,18 @@ const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
-  const isLoginPage = req.nextUrl.pathname.startsWith("/login");
-  const isAdminPage = req.nextUrl.pathname.startsWith("/letsfuck");
+  const { pathname } = req.nextUrl;
 
-  if (isAdminPage && !isLoggedIn) {
-    // Redirect to login if trying to access admin dashboard when not logged in
-    return Response.redirect(new URL("/login", req.nextUrl));
-  }
+  // A page is an admin subpage if it starts with /letsfuck/ but is NOT /letsfuck itself
+  const isAdminSubPage = pathname.startsWith("/letsfuck/") && pathname !== "/letsfuck";
 
-  if (isLoginPage && isLoggedIn) {
-    // Redirect to admin dashboard if trying to access login page when already logged in
-    return Response.redirect(new URL("/letsfuck", req.nextUrl));
+  if (isAdminSubPage && !isLoggedIn) {
+    // Redirect unauthenticated attempts on admin subpages to the homepage
+    return Response.redirect(new URL("/", req.nextUrl));
   }
 });
 
 export const config = {
-  // Run middleware on admin pages and login page
-  matcher: ["/letsfuck/:path*", "/login"],
+  // Run middleware on admin pages only
+  matcher: ["/letsfuck/:path*"],
 };

@@ -15,13 +15,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-function LoginForm() {
+function LoginFormInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
 
-  // Get callback URL or default to admin dashboard
-  const callbackUrl = searchParams.get("callbackUrl") || "/letsfuck";
+  // Safely validate the callbackUrl — only allow same-origin relative paths
+  // starting with /letsfuck to prevent open redirect attacks
+  const rawCallbackUrl = searchParams.get("callbackUrl") || "";
+  const isSafeCallback =
+    rawCallbackUrl.startsWith("/letsfuck") &&
+    !rawCallbackUrl.startsWith("//") &&
+    !rawCallbackUrl.includes("://");
+  const callbackUrl = isSafeCallback ? rawCallbackUrl : "/letsfuck";
 
   const {
     register,
@@ -159,7 +165,7 @@ function LoginForm() {
   );
 }
 
-export default function LoginPage() {
+export default function LoginForm() {
   return (
     <Suspense
       fallback={
@@ -168,7 +174,7 @@ export default function LoginPage() {
         </div>
       }
     >
-      <LoginForm />
+      <LoginFormInner />
     </Suspense>
   );
 }

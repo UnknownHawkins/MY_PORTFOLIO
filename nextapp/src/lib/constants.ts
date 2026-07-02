@@ -13,6 +13,7 @@ import type {
   ContactInfo,
   NavLink,
   GitHubRepo,
+  Blog,
 } from "@/types";
 
 // ── Identity ──────────────────────────────────────────────
@@ -81,6 +82,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Education", href: "#education", id: "education" },
   { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Blog", href: "#blog", id: "blog" },
   { label: "GitHub", href: "#github", id: "github" },
   { label: "Experience", href: "#experience", id: "experience" },
   { label: "Contact", href: "#contact", id: "contact" },
@@ -254,6 +256,9 @@ export const PROJECTS: Project[] = [
 
 export const PROJECTS_SHOWCASE_URL =
   "https://project-showcase-delta-sooty.vercel.app/";
+
+// ── Fallback Blog Data ─────────────────────────────────────
+export const BLOGS: Blog[] = [];
 
 // ── GitHub Repos (static fallback) ────────────────────────
 export const GITHUB_REPOS: GitHubRepo[] = [

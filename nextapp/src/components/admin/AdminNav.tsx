@@ -7,6 +7,7 @@ import { signOut } from "next-auth/react";
 import {
   LayoutDashboard,
   FolderKanban,
+  FileText,
   Mail,
   LogOut,
   Home,
@@ -21,6 +22,7 @@ export default function AdminNav() {
   const links = [
     { href: "/letsfuck", label: "Dashboard", icon: LayoutDashboard },
     { href: "/letsfuck/projects", label: "Projects", icon: FolderKanban },
+    { href: "/letsfuck/blogs", label: "Blogs", icon: FileText },
     { href: "/letsfuck/messages", label: "Messages", icon: Mail },
   ];
 

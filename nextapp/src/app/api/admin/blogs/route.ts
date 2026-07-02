@@ -13,20 +13,20 @@ export async function GET() {
       );
     }
 
-    // 2. Fetch messages from database
+    // 2. Fetch blogs from database
     if (!process.env.TURSO_DATABASE_URL) {
       return NextResponse.json({ success: true, data: [] });
     }
 
-    const messages = await prisma.contactMessage.findMany({
-      orderBy: { createdAt: "desc" },
+    const blogs = await prisma.blog.findMany({
+      orderBy: { updatedAt: "desc" },
     });
 
-    return NextResponse.json({ success: true, data: messages });
+    return NextResponse.json({ success: true, data: blogs });
   } catch (error: any) {
-    console.error("API error in /api/admin/messages:", error);
+    console.error("API error in /api/admin/blogs:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Failed to load messages" },
+      { success: false, error: error.message || "Failed to load blogs" },
       { status: 500 }
     );
   }

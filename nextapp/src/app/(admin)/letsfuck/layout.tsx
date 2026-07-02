@@ -1,12 +1,19 @@
 import React from "react";
 import AdminNav from "@/components/admin/AdminNav";
 import AdminHeader from "@/components/admin/AdminHeader";
+import { auth } from "@/auth";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
+  if (!session) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="flex min-h-screen bg-[#030712] text-foreground">
       {/* Sidebar Nav */}

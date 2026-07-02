@@ -137,3 +137,14 @@ export const PaginationSchema = z.object({
 });
 
 export type PaginationParams = z.infer<typeof PaginationSchema>;
+
+// ── Blog (Admin) ──────────────────────────────────────────
+export const BlogSchema = z.object({
+  title: z.string().min(3, "Title must be at least 3 characters").max(200),
+  partNo: z.string().min(1, "Part number/name is required").max(50),
+  content: z.string().min(10, "Content must be at least 10 characters"),
+  author: z.string().min(2, "Author must be at least 2 characters").max(100).default("Anubhav Singh"),
+});
+
+export type BlogFormValues = z.infer<typeof BlogSchema>;
+

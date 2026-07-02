@@ -22,10 +22,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const adminEmail = process.env.ADMIN_EMAIL || "jonsnower07@gmail.com";
         const adminPassword = process.env.ADMIN_PASSWORD || "change-me-after-first-login";
 
+        // Map admin username or email to database email identifier
+        const targetEmail = (emailStr === "UnknownHawkins07" || emailStr === "UnknownHawkins7217" || emailStr === adminEmail)
+          ? adminEmail
+          : emailStr;
+
         // Try to query the database first
         try {
           const user = await prisma.user.findUnique({
-            where: { email: emailStr },
+            where: { email: targetEmail },
           });
 
           if (user) {
@@ -43,9 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         // Static fallback if DB is down or empty, matching local development default env variables
-        console.log("AUTH DEBUG: Checking fallback credentials match");
-
-        if (emailStr === adminEmail && passwordStr === adminPassword) {
+        if (targetEmail === adminEmail && passwordStr === adminPassword) {
           return {
             id: "static-admin",
             email: adminEmail,

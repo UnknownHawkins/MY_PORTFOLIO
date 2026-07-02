@@ -13,8 +13,8 @@ export async function GET() {
       );
     }
 
-    // 2. Fetch projects from database (or return empty list if not connected)
-    if (!process.env.DATABASE_URL) {
+    // 2. Fetch projects from database
+    if (!process.env.TURSO_DATABASE_URL) {
       return NextResponse.json({ success: true, data: [] });
     }
 

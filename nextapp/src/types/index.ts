@@ -250,3 +250,14 @@ export interface ToastMessage {
 export interface ThemeType {
   mode: "dark" | "light" | "system";
 }
+
+export interface Blog {
+  id: string;
+  title: string;
+  partNo: string;
+  content: string;
+  author: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+

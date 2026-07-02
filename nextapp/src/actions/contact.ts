@@ -38,7 +38,7 @@ export async function submitContactForm(data: ContactFormValues) {
 
     // 4. Save to database
     let savedMsg = null;
-    if (process.env.DATABASE_URL) {
+    if (process.env.TURSO_DATABASE_URL) {
       try {
         savedMsg = await prisma.contactMessage.create({
           data: {
