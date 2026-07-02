@@ -20,8 +20,8 @@ import GitHub from "@/components/sections/GitHub";
 import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
 
-// Page cache revalidation limit: 1 hour
-export const revalidate = 3600;
+// Dynamic page revalidation — fetch fresh content directly from DB
+export const revalidate = 0;
 
 export default async function HomePage() {
   let skills: Skill[] | undefined = undefined;
