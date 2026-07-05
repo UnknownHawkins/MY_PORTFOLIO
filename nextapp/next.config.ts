@@ -52,7 +52,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Strict-Transport-Security",
-            value: "max-age=63072000; includeSubDomains; preload",
+            value: "max-age=31536000; includeSubDomains; preload",
           },
           {
             key: "X-Frame-Options",
@@ -63,22 +63,34 @@ const nextConfig: NextConfig = {
             value: "nosniff",
           },
           {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
+            value: "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
+          },
+          {
+            key: "X-Permitted-Cross-Domain-Policies",
+            value: "none",
+          },
+          {
+            key: "X-Download-Options",
+            value: "noopen",
           },
           {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self';",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
-              "style-src 'self' 'unsafe-inline';",
-              "img-src 'self' blob: data: https://avatars.githubusercontent.com https://github.com https://raw.githubusercontent.com https://opengraph.githubassets.com;",
-              "font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;",
-              "connect-src 'self';",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:;",
+              "style-src 'self' 'unsafe-inline' https:;",
+              "img-src 'self' blob: data: https:;",
+              "font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com data:;",
+              "connect-src 'self' https:;",
               "object-src 'none';",
               "base-uri 'self';",
               "form-action 'self';",
