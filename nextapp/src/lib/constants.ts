@@ -202,10 +202,10 @@ export const PROJECTS: Project[] = [
     technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Google Gemini AI"],
     githubUrl: "https://github.com/UnknownHawkins/CAREERPILOT-AI",
     liveUrl: "https://carrer-advisor.vercel.app",
-    status: "in_progress",
+    status: "completed",
     featured: true,
     order: 1,
-    type: "Under Active Development",
+    type: "Completed",
     imageUrl: "/assets/3.png",
   },
   {
@@ -295,7 +295,7 @@ export const PROJECTS: Project[] = [
     status: "in_progress",
     featured: false,
     order: 7,
-    type: "In Progress",
+    type: "Under Active Development",
     imageUrl: "/assets/1.png",
   },
 ];
