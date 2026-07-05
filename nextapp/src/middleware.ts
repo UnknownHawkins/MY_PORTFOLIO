@@ -16,7 +16,19 @@ export default auth((req) => {
     return Response.redirect(new URL("/", req.nextUrl));
   }
 
-  const response = NextResponse.next();
+  // Generate a unique per-request nonce for Next.js inline scripts
+  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+
+  const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' blob: data: https:; font-src 'self' https: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;`;
+
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-nonce", nonce);
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 
   // A+ Security Headers for SecurityHeaders.com & Snyk Audits
   response.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
@@ -30,10 +42,7 @@ export default auth((req) => {
   );
   response.headers.set("X-Permitted-Cross-Domain-Policies", "none");
   response.headers.set("X-Download-Options", "noopen");
-  response.headers.set(
-    "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' blob: data: https:; font-src 'self' https: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
-  );
+  response.headers.set("Content-Security-Policy", cspHeader);
   response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
   response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
 
