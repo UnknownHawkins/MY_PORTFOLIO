@@ -54,7 +54,12 @@ export default async function HomePage() {
       ]);
 
       if (dbSkills.length > 0) skills = dbSkills as unknown as Skill[];
-      if (dbProjects.length > 0) projects = dbProjects as unknown as Project[];
+      if (dbProjects.length > 0) {
+        const fetchedProjects = dbProjects as unknown as Project[];
+        const dbIds = new Set(fetchedProjects.map((p) => p.id));
+        const missingFromDb = PROJECTS.filter((p) => !dbIds.has(p.id));
+        projects = [...fetchedProjects, ...missingFromDb].sort((a, b) => a.order - b.order);
+      }
       if (dbBlogs.length > 0) blogs = dbBlogs as unknown as Blog[];
       if (dbExperience.length > 0) experience = dbExperience as unknown as ExperienceModel[];
       if (dbEducation.length > 0) education = dbEducation as unknown as EducationModel[];
