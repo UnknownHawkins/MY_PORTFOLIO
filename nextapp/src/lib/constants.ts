@@ -194,6 +194,36 @@ export const CERTIFICATIONS_DRIVE_URL =
 // ── Projects ───────────────────────────────────────────────
 export const PROJECTS: Project[] = [
   {
+    id: "project-showcase",
+    title: "Project Showcase — Developer & Admin Platform",
+    description:
+      "A secure, high-performance developer portfolio, administrative management dashboard, and AI playground built with Next.js 15, React 19, TypeScript, Tailwind CSS v4, Prisma ORM, and Google Gemini AI.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Gemini AI"],
+    technologies: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS v4", "Prisma", "Clerk Auth", "Google Gemini AI"],
+    githubUrl: "https://github.com/UnknownHawkins/PROJECT_SHOWCASE",
+    liveUrl: "https://project-showcase-delta-sooty.vercel.app/",
+    status: "in_progress",
+    featured: true,
+    order: 1,
+    type: "Full-Stack AI Platform",
+    imageUrl: "/assets/project-showcase.png",
+  },
+  {
+    id: "my-portfolio",
+    title: "My Portfolio — Full-Stack Developer Platform",
+    description:
+      "Production-ready, full-stack software engineer developer portfolio built with Next.js 15, React 19, TypeScript, Tailwind CSS v4, Prisma, and PostgreSQL with managed admin dashboard and live GitHub sync.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "NextAuth"],
+    technologies: ["Next.js 15", "TypeScript 5", "Tailwind CSS v4", "Prisma v6", "PostgreSQL", "NextAuth v5"],
+    githubUrl: "https://github.com/UnknownHawkins/MY_PORTFOLIO",
+    liveUrl: "https://my-portfolio-three-kappa-57.vercel.app/",
+    status: "completed",
+    featured: true,
+    order: 2,
+    type: "Full-Stack SaaS Platform",
+    imageUrl: "/assets/my-portfolio.png",
+  },
+  {
     id: "hostel-management",
     title: "Hostel Management System",
     description:
@@ -204,7 +234,7 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://hostel-management-system-pearl.vercel.app/",
     status: "in_progress",
     featured: true,
-    order: 1,
+    order: 3,
     type: "2nd Year Class Project",
     imageUrl: "/assets/1.png",
   },
@@ -219,7 +249,7 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://book-review-app-8sur.onrender.com/#",
     status: "completed",
     featured: true,
-    order: 2,
+    order: 4,
     type: "Mini Project",
     imageUrl: "/assets/2.png",
   },
@@ -234,7 +264,7 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://careerpath-ai-neon.vercel.app/",
     status: "completed",
     featured: true,
-    order: 3,
+    order: 5,
     type: "Hackathon Submitted Project",
     imageUrl: "/assets/3.png",
   },
@@ -249,7 +279,7 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://smart-calculator-a6xr.onrender.com",
     status: "completed",
     featured: false,
-    order: 4,
+    order: 6,
     imageUrl: "/assets/4.png",
   },
 ];

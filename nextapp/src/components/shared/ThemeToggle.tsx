@@ -18,14 +18,14 @@ export default function ThemeToggle() {
 
   // Avoid hydration mismatch by only rendering icons once mounted
   useEffect(() => {
-    setMounted(true);
     // Initialize theme from localStorage or default
-    const savedTheme = localStorage.getItem("theme-preference") as any;
+    const savedTheme = localStorage.getItem("theme-preference") as "dark" | "light" | "system" | null;
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
       setTheme("dark");
     }
+    setMounted(true);
   }, [setTheme]);
 
   if (!mounted) {

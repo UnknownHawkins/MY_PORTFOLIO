@@ -77,20 +77,21 @@ function FormattedContent({ content }: { content: string }) {
 export default function FridayChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [assistantName, setAssistantName] = useState("Friday");
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [assistantName] = useState(() => {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return days[new Date().getDay()];
+  });
 
-  useEffect(() => {
+  const [messages, setMessages] = useState<Message[]>(() => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const today = days[new Date().getDay()];
-    setAssistantName(today);
-    setMessages([
+    return [
       {
         role: "friday",
         content: `Hey this is ${today} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his projects, skills with proficiency levels, GitHub repositories, and hobbies. My name changes automatically every day—today I'm ${today}!`,
       },
-    ]);
-  }, []);
+    ];
+  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [searchStatus, setSearchStatus] = useState<string | null>(null);

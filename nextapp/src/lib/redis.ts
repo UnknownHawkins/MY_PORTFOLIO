@@ -18,7 +18,7 @@ export function createRateLimiter(limit = 5, windowInSeconds = 60) {
   if (!redis) {
     // Graceful fallback: allow all requests in development/degraded mode
     return {
-      limit: async (key: string) => {
+      limit: async (_key: string) => {
         return {
           success: true,
           limit,

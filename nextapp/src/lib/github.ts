@@ -2,6 +2,54 @@ import { GITHUB_REPOS, OWNER } from "./constants";
 import { redis } from "./redis";
 import type { GitHubRepo, GitHubStats, ContributionGraph } from "@/types";
 
+interface RawGitHubRepo {
+  id: number;
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  watchers_count: number;
+  open_issues_count: number;
+  topics?: string[];
+  created_at: string;
+  updated_at: string;
+  pushed_at: string;
+  private: boolean;
+  fork: boolean;
+  default_branch: string;
+}
+
+interface GraphQLPinnedRepoNode {
+  name: string;
+  description: string | null;
+  url: string;
+  homepageUrl: string | null;
+  primaryLanguage: { name: string } | null;
+  stargazerCount: number;
+  forkCount: number;
+  repositoryTopics?: { nodes: Array<{ topic: { name: string } }> };
+  createdAt: string;
+  updatedAt: string;
+  pushedAt: string;
+  isPrivate: boolean;
+  isFork: boolean;
+  defaultBranchRef?: { name: string } | null;
+}
+
+interface GraphQLContributionDay {
+  date: string;
+  contributionCount: number;
+  color: string;
+}
+
+interface GraphQLContributionWeek {
+  contributionDays: GraphQLContributionDay[];
+}
+
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || OWNER.username;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
@@ -41,33 +89,30 @@ async function getCachedOrFetch<T>(key: string, fetchFn: () => Promise<T>): Prom
         return typeof cached === "string" ? JSON.parse(cached) : cached;
       }
     } catch (err) {
-      console.error(`Redis cache error for key ${cacheKey}:`, err);
+      console.warn(`Redis get failed for ${cacheKey}, proceeding to fetch:`, err);
     }
   }
 
-  // Fetch fresh data
-  const data = await fetchFn();
+  const freshData = await fetchFn();
 
-  if (redis && data) {
+  if (redis) {
     try {
-      await redis.set(cacheKey, JSON.stringify(data), { ex: CACHE_TTL });
-      console.log(`Cache set for ${cacheKey}`);
+      await redis.set(cacheKey, JSON.stringify(freshData), { ex: CACHE_TTL });
     } catch (err) {
-      console.error(`Redis write error for key ${cacheKey}:`, err);
+      console.warn(`Redis set failed for ${cacheKey}:`, err);
     }
   }
 
-  return data;
+  return freshData;
 }
 
 /**
- * Fetch profile and basic stats from GitHub
+ * Fetch GitHub user profile and stats
  */
 export async function getGitHubStats(): Promise<GitHubStats> {
   return getCachedOrFetch<GitHubStats>("stats", async () => {
-    // If no token, return static fallbacks
     if (!GITHUB_TOKEN) {
-      console.log("No GITHUB_TOKEN configured, using static fallback stats.");
+      console.log("No GITHUB_TOKEN found, returning static fallback stats.");
       return getStaticFallbackStats();
     }
 
@@ -90,7 +135,7 @@ export async function getGitHubStats(): Promise<GitHubStats> {
       const userData = await userRes.json();
 
       // 2. Fetch all public repos to calculate stars, forks, languages
-      let allRepos: any[] = [];
+      let allRepos: RawGitHubRepo[] = [];
       let page = 1;
       let hasMore = true;
 
@@ -173,7 +218,7 @@ export async function getGitHubStats(): Promise<GitHubStats> {
 /**
  * Get pinned repos or fall back to sorting by stars
  */
-async function getPinnedRepos(allRepos: any[]): Promise<GitHubRepo[]> {
+async function getPinnedRepos(allRepos: RawGitHubRepo[]): Promise<GitHubRepo[]> {
   try {
     // Attempt to query GraphQL for pinned items
     const query = `
@@ -229,7 +274,7 @@ async function getPinnedRepos(allRepos: any[]): Promise<GitHubRepo[]> {
       const result = await graphqlRes.json();
       const nodes = result.data?.user?.pinnedItems?.nodes;
       if (nodes && nodes.length > 0) {
-        return nodes.map((node: any, idx: number) => ({
+        return nodes.map((node: GraphQLPinnedRepoNode, idx: number) => ({
           id: idx,
           name: node.name,
           fullName: `${GITHUB_USERNAME}/${node.name}`,
@@ -241,7 +286,7 @@ async function getPinnedRepos(allRepos: any[]): Promise<GitHubRepo[]> {
           forksCount: node.forkCount || 0,
           watchersCount: 0,
           openIssuesCount: 0,
-          topics: node.repositoryTopics?.nodes?.map((n: any) => n.topic.name) || [],
+          topics: node.repositoryTopics?.nodes?.map((n) => n.topic.name) || [],
           createdAt: node.createdAt,
           updatedAt: node.updatedAt,
           pushedAt: node.pushedAt,
@@ -301,8 +346,8 @@ export async function getRepositories(): Promise<GitHubRepo[]> {
       );
 
       if (!res.ok) throw new Error("Failed to fetch repos");
-      const data = await res.json();
-      return data.map((repo: any) => ({
+      const data: RawGitHubRepo[] = await res.json();
+      return data.map((repo) => ({
         id: repo.id,
         name: repo.name,
         fullName: repo.full_name,
@@ -378,8 +423,8 @@ export async function getContributions(): Promise<ContributionGraph> {
 
       return {
         totalContributions: calendar.totalContributions || 0,
-        weeks: calendar.weeks.map((week: any) => ({
-          days: week.contributionDays.map((day: any) => {
+        weeks: calendar.weeks.map((week: GraphQLContributionWeek) => ({
+          days: week.contributionDays.map((day: GraphQLContributionDay) => {
             // Map color levels 0-4
             let level: 0 | 1 | 2 | 3 | 4 = 0;
             if (day.contributionCount > 0) {
