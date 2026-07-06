@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#2563eb',    
-                        secondary: '#64748b',  
-                        accent: '#06b6d4',    
-                        dark: '#0f172a',     
-                        light: '#f8fafc',    
-                        success: '#10b981',     
-                        warning: '#f59e0b',     
-                        card: '#1e293b'          
+                        primary: '#2563eb',
+                        secondary: '#64748b',
+                        accent: '#06b6d4',
+                        dark: '#0f172a',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        card: '#1e293b'
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.6s ease-out',
@@ -181,6 +182,7 @@
             white-space: nowrap;
             animation: typing 1s steps(40, end), blink-caret 120s step-end infinite;
         }
+
         .typewriter2 {
             overflow: hidden;
             border-right: 2px solid #2563eb;
@@ -198,14 +200,14 @@
 
         /* Grid background */
         .grid-bg {
-            background-image: 
+            background-image:
                 linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
         .grid-bg-light {
-            background-image: 
+            background-image:
                 linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -261,8 +263,9 @@
             box-sizing: border-box;
             animation: rotation 1s linear infinite;
         }
+
         .loader::after {
-            content: '';  
+            content: '';
             box-sizing: border-box;
             position: absolute;
             left: 50%;
@@ -276,8 +279,13 @@
         }
 
         @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Back to top button */
@@ -355,6 +363,7 @@
         }
     </style>
 </head>
+
 <body class="bg-dark text-light min-h-screen relative overflow-x-hidden dark:bg-light dark:text-dark theme-transition">
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
@@ -377,28 +386,37 @@
     <div id="particles-container" class="fixed inset-0 z-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-dark/90 backdrop-blur-sm z-50 border-b border-card dark:bg-light/90 dark:border-gray-200 theme-transition">
+    <nav
+        class="fixed top-0 w-full bg-dark/90 backdrop-blur-sm z-50 border-b border-card dark:bg-light/90 dark:border-gray-200 theme-transition">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#home" class="flex items-center magnetic-hover">
                     <img src="Assets/letter-a.png" alt="Anubhav Logo" class="h-10 w-10 rounded-full mr-2">
                     <span class="text-xl font-bold gradient-text">Anubhav</span>
                 </a>
-                
+
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Home</a>
-                    <a href="#skills" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Skills</a>
-                    <a href="#education" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Education</a>
-                    <a href="#projects" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Projects</a>
-                    <a href="#Github" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Github</a>
-                    <a href="#experience" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Experience</a>
-                    <a href="#contact" class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Contact</a>
+                    <a href="#home"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Home</a>
+                    <a href="#skills"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Skills</a>
+                    <a href="#education"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Education</a>
+                    <a href="#projects"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Projects</a>
+                    <a href="#Github"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Github</a>
+                    <a href="#experience"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Experience</a>
+                    <a href="#contact"
+                        class="text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary magnetic-hover">Contact</a>
                 </div>
 
                 <div class="flex items-center space-x-4">
                     <!-- Dark Mode Toggle -->
-                    <button id="theme-toggle" class="p-2 bg-card dark:bg-gray-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 magnetic-hover">
+                    <button id="theme-toggle"
+                        class="p-2 bg-card dark:bg-gray-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 magnetic-hover">
                         <i class="fas fa-moon text-yellow-400 dark:text-gray-600"></i>
                     </button>
 
@@ -415,7 +433,8 @@
     <div id="menu-overlay" class="menu-overlay fixed inset-0 bg-black/50 z-40"></div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-dark dark:bg-light z-50 shadow-2xl theme-transition">
+    <div id="mobile-menu"
+        class="mobile-menu fixed top-0 right-0 w-64 h-full bg-dark dark:bg-light z-50 shadow-2xl theme-transition">
         <div class="p-6">
             <div class="flex justify-between items-center mb-8">
                 <a href="#home" class="flex items-center">
@@ -426,29 +445,40 @@
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
-            
+
             <div class="space-y-6">
-                <a href="#home" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Home</a>
-                <a href="#skills" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Skills</a>
-                <a href="#education" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Education</a>
-                <a href="#projects" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Projects</a>
-                <a href="#Github" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Github</a>
-                <a href="#experience" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Experience</a>
-                <a href="#contact" class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Contact</a>
+                <a href="#home"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Home</a>
+                <a href="#skills"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Skills</a>
+                <a href="#education"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Education</a>
+                <a href="#projects"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Projects</a>
+                <a href="#Github"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Github</a>
+                <a href="#experience"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Experience</a>
+                <a href="#contact"
+                    class="block text-secondary hover:text-primary transition-all duration-300 font-medium dark:text-gray-600 dark:hover:text-primary py-2 magnetic-hover">Contact</a>
             </div>
 
             <div class="absolute bottom-8 left-6 right-6">
                 <div class="flex space-x-4">
-                    <a href="https://www.linkedin.com/in/anubhav-singh-aa800b307" target="_blank" class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
+                    <a href="https://www.linkedin.com/in/anubhav-singh-aa800b307" target="_blank"
+                        class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://github.com/UnknownHawkins/" target="_blank" class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
+                    <a href="https://github.com/UnknownHawkins/" target="_blank"
+                        class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://x.com/fav7659" target="_blank" class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
+                    <a href="https://x.com/fav7659" target="_blank"
+                        class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
                         <i class="fab fa-x-twitter"></i>
                     </a>
-                    <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank" class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
+                    <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank"
+                        class="w-10 h-10 bg-card dark:bg-gray-200 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 magnetic-hover">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -471,35 +501,46 @@
                             <div class="typewriter2">About Me</div>
                         </div>
                         <p class="text-lg text-secondary leading-relaxed max-w-2xl dark:text-gray-600">
-                         I didn't know anything about tech when I was in school, but once I got to college and started learning about it, my interest grew bigger and bigger. What started as curiosity soon turned into a real passion for building practical projects and exploring cybersecurity to help protect people online.
+                            I didn't know anything about tech when I was in school, but once I got to college and
+                            started learning about it, my interest grew bigger and bigger. What started as curiosity
+                            soon turned into a real passion for building practical projects and exploring cybersecurity
+                            to help protect people online.
                         </p>
                         <p class="text-lg text-secondary leading-relaxed max-w-2xl dark:text-gray-600">
-                            Outside of coding, I enjoy playing games, watching anime and movies of all genres, and spending peaceful mornings and evenings in my hometown, surrounded by animals and nature.</p>
+                            Outside of coding, I enjoy playing games, watching anime and movies of all genres, and
+                            spending peaceful mornings and evenings in my hometown, surrounded by animals and nature.
+                        </p>
                     </div>
 
                     <!-- Social Links -->
                     <div class="flex space-x-6">
-                        <a href="https://www.linkedin.com/in/anubhav-singh-aa800b307" target="_blank" class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
+                        <a href="https://www.linkedin.com/in/anubhav-singh-aa800b307" target="_blank"
+                            class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
                             <i class="fab fa-linkedin text-xl"></i>
                         </a>
-                        <a href="https://github.com/UnknownHawkins/" target="_blank" class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/" target="_blank"
+                            class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
-                        <a href="https://x.com/fav7659" target="_blank" class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
+                        <a href="https://x.com/fav7659" target="_blank"
+                            class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
                             <i class="fab fa-x-twitter text-xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank" class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
+                        <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank"
+                            class="w-12 h-12 bg-card rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/10 transition-all duration-300 dark:bg-gray-200 dark:text-gray-600 dark:hover:text-primary magnetic-hover">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
                     </div>
 
                     <!-- CTA Buttons -->
-                     <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center gap-2">
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact"
+                            class="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center gap-2">
                             <i class="fas fa-paper-plane"></i>
                             Get in Touch
                         </a>
-                        <a href="Assets/resume...pdf" target="_blank" class="px-8 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2">
+                        <a href="Assets/resume...pdf" target="_blank"
+                            class="px-8 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2">
                             <i class="fas fa-file-lines"></i>
                             View CV
                         </a>
@@ -521,7 +562,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Programming Languages -->
-                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card">
                     <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
                         <i class="fas fa-code text-primary text-lg"></i>
                     </div>
@@ -555,7 +597,8 @@
                 </div>
 
                 <!-- Databases -->
-                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.1s">
+                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.1s">
                     <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-3">
                         <i class="fas fa-database text-accent text-lg"></i>
                     </div>
@@ -577,7 +620,8 @@
                 </div>
 
                 <!-- Cybersecurity & OS -->
-                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.2s">
+                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.2s">
                     <div class="w-10 h-10 bg-success/10 rounded-lg flex items-center justify-center mb-3">
                         <i class="fas fa-shield-alt text-success text-lg"></i>
                     </div>
@@ -605,7 +649,8 @@
                 </div>
 
                 <!-- Tools & Soft Skills -->
-                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.3s">
+                <div class="bg-dark rounded-xl p-4 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.3s">
                     <div class="w-10 h-10 bg-warning/10 rounded-lg flex items-center justify-center mb-3">
                         <i class="fas fa-tools text-warning text-lg"></i>
                     </div>
@@ -653,12 +698,15 @@
 
             <div class="max-w-4xl mx-auto space-y-8">
                 <!-- Education Item 1 -->
-                <div class="bg-card rounded-2xl p-8 card-hover animate-slide-in-left dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-card rounded-2xl p-8 card-hover animate-slide-in-left dark:bg-white dark:shadow-md glass-card">
                     <div class="flex items-start justify-between">
                         <div class="flex-1">
-                            <h3 class="text-2xl font-semibold text-primary mb-2">Bachelor of Technology in Computer Science and Engineering</h3>
+                            <h3 class="text-2xl font-semibold text-primary mb-2">Bachelor of Technology in Computer
+                                Science and Engineering</h3>
                             <p class="text-lg text-secondary mb-2 dark:text-gray-600">GLA University, Mathura</p>
-                            <p class="text-secondary dark:text-gray-600">Third Year Student | Expected Graduation: 2027</p>
+                            <p class="text-secondary dark:text-gray-600">Third Year Student | Expected Graduation: 2027
+                            </p>
                         </div>
                         <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center">
                             <i class="fas fa-graduation-cap text-primary text-2xl"></i>
@@ -667,11 +715,13 @@
                 </div>
 
                 <!-- Education Item 2 -->
-                <div class="bg-card rounded-2xl p-8 card-hover animate-slide-in-right dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-card rounded-2xl p-8 card-hover animate-slide-in-right dark:bg-white dark:shadow-md glass-card">
                     <div class="flex items-start justify-between">
                         <div class="flex-1">
                             <h3 class="text-2xl font-semibold text-primary mb-2">Intermediate Degree (12th Grade)</h3>
-                            <p class="text-lg text-secondary mb-2 dark:text-gray-600">Janta Vidhyalaya Inter Collage, Bakewar, Etawah</p>
+                            <p class="text-lg text-secondary mb-2 dark:text-gray-600">Janta Vidhyalaya Inter Collage,
+                                Bakewar, Etawah</p>
                             <p class="text-secondary dark:text-gray-600">Graduation: 2021 | Grade: "B"</p>
                         </div>
                         <div class="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center">
@@ -681,11 +731,13 @@
                 </div>
 
                 <!-- Education Item 3 -->
-                <div class="bg-card rounded-2xl p-8 card-hover animate-slide-in-left dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-card rounded-2xl p-8 card-hover animate-slide-in-left dark:bg-white dark:shadow-md glass-card">
                     <div class="flex items-start justify-between">
                         <div class="flex-1">
                             <h3 class="text-2xl font-semibold text-primary mb-2">High School (10th Grade)</h3>
-                            <p class="text-lg text-secondary mb-2 dark:text-gray-600">Saraswati Vidhya Mandir, Dibiyapur, Auraiya</p>
+                            <p class="text-lg text-secondary mb-2 dark:text-gray-600">Saraswati Vidhya Mandir,
+                                Dibiyapur, Auraiya</p>
                             <p class="text-secondary dark:text-gray-600">Graduation: 2023 | Grade: "A"</p>
                         </div>
                         <div class="w-16 h-16 bg-success/10 rounded-xl flex items-center justify-center">
@@ -709,7 +761,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 <!-- Certification 1 -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-xl font-semibold text-primary">META FRONTEND DEVELOPER</h3>
@@ -720,11 +773,13 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3 mt-4">
-                        <a href="Assets/Front End Developer.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
+                        <a href="Assets/Front End Developer.pdf" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
                             <i class="fas fa-file-pdf"></i>
                             View Certificate
                         </a>
-                        <a href="https://share.google/0tW5rPIgG0ROt4HS7" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-sm magnetic-hover">
+                        <a href="https://share.google/0tW5rPIgG0ROt4HS7" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-sm magnetic-hover">
                             <i class="fas fa-external-link-alt"></i>
                             View Credential
                         </a>
@@ -732,7 +787,8 @@
                 </div>
 
                 <!-- Certification 2 -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.1s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.1s">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-xl font-semibold text-primary">MICROSOFT AZURE DEVELOPER</h3>
@@ -743,7 +799,8 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3 mt-4">
-                        <a href="Assets/Azure AI Essentials.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
+                        <a href="Assets/Azure AI Essentials.pdf" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
                             <i class="fas fa-file-pdf"></i>
                             View Certificate
                         </a>
@@ -751,7 +808,8 @@
                 </div>
 
                 <!-- Certification 3 -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.2s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.2s">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-xl font-semibold text-primary">CYBERSECURITY ENGINEER</h3>
@@ -762,11 +820,13 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3 mt-4">
-                        <a href="Assets/Cyber Security Professional.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
+                        <a href="Assets/Cyber Security Professional.pdf" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
                             <i class="fas fa-file-pdf"></i>
                             View Certificate
                         </a>
-                        <a href="https://share.google/89nldAXrYSiTJCxfD" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-sm magnetic-hover">
+                        <a href="https://share.google/89nldAXrYSiTJCxfD" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-sm magnetic-hover">
                             <i class="fas fa-external-link-alt"></i>
                             View Credential
                         </a>
@@ -774,7 +834,8 @@
                 </div>
 
                 <!-- Certification 4 -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.3s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.3s">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-xl font-semibold text-primary">AI/ML ENGINEER</h3>
@@ -785,11 +846,13 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3 mt-4">
-                        <a href="Assets/AI & ML Engineering.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
+                        <a href="Assets/AI & ML Engineering.pdf" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm magnetic-hover">
                             <i class="fas fa-file-pdf"></i>
                             View Certificate
                         </a>
-                        <a href="https://share.google/Lg7LbpDRCH1r29smP" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-sm magnetic-hover">
+                        <a href="https://share.google/Lg7LbpDRCH1r29smP" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-sm magnetic-hover">
                             <i class="fas fa-external-link-alt"></i>
                             View Credential
                         </a>
@@ -799,7 +862,9 @@
 
             <!-- Google Drive Link -->
             <div class="text-center mt-12">
-                <a href="https://drive.google.com/drive/folders/1c9x8i49PSmxRaD_USLw-6-1x-JDHPY7u?role=reader" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                <a href="https://drive.google.com/drive/folders/1c9x8i49PSmxRaD_USLw-6-1x-JDHPY7u?role=reader"
+                    target="_blank"
+                    class="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                     <i class="fab fa-google-drive"></i>
                     View All Certifications on My Google Drive.
                 </a>
@@ -819,15 +884,23 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 <!-- Project 1: CareerPilot AI -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">AI Career Platform</span>
-                            <span class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">MINI PROJECT II</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">AI
+                                Career Platform</span>
+                            <span
+                                class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">MINI
+                                PROJECT II</span>
                         </div>
-                        <h3 class="text-2xl font-semibold text-primary mb-4">CareerPilot AI — Next-Gen AI Career Advisor</h3>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">CareerPilot AI — Next-Gen AI Career Advisor
+                        </h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            An intelligent career guidance and skill gap analysis platform powered by Google Gemini AI and TypeScript. Features personalized career roadmaps, market insights, and interactive progression tracking.
+                            An intelligent career guidance and skill gap analysis platform powered by Google Gemini AI
+                            and TypeScript. Features personalized career roadmaps, market insights, and interactive
+                            progression tracking.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -845,13 +918,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> TypeScript, Next.js, React, Tailwind CSS, Gemini AI</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong>
+                            TypeScript, Next.js, React, Tailwind CSS, Gemini AI</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/CAREERPILOT-AI" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/CAREERPILOT-AI" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://carrer-advisor.vercel.app" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://carrer-advisor.vercel.app" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -863,15 +939,22 @@
                 </div>
 
                 <!-- Project 2: Life Ruination Protocol -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">Satirical Web App</span>
-                            <span class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">WORKSHOP PROJECT</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">Satirical
+                                Web App</span>
+                            <span
+                                class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">WORKSHOP
+                                PROJECT</span>
                         </div>
-                        <h3 class="text-2xl font-semibold text-primary mb-4">Life Ruination Protocol — Satirical Web App</h3>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">Life Ruination Protocol — Satirical Web App
+                        </h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            A satirical web application that humorously guides users through a systematic approach to dismantling their existence over 56 carefully awkward days.
+                            A satirical web application that humorously guides users through a systematic approach to
+                            dismantling their existence over 56 carefully awkward days.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -889,13 +972,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> JavaScript, Node.js, Express.js, HTML5, CSS3</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong>
+                            JavaScript, Node.js, Express.js, HTML5, CSS3</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/LIFE_RUINATION_PROTOCOL" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/LIFE_RUINATION_PROTOCOL" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://life-ruination-protocol-backend.onrender.com" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://life-ruination-protocol.vercel.app/" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -907,15 +993,23 @@
                 </div>
 
                 <!-- Project 3: Project Showcase -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-blue-500/10 rounded-full border border-blue-500/20">Full-Stack AI Platform</span>
-                            <span class="text-xs font-bold text-white bg-blue-500 px-3 py-1 rounded-full uppercase">PERSONAL PROJECT</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-blue-500/10 rounded-full border border-blue-500/20">Full-Stack
+                                AI Platform</span>
+                            <span
+                                class="text-xs font-bold text-white bg-blue-500 px-3 py-1 rounded-full uppercase">PERSONAL
+                                PROJECT</span>
                         </div>
-                        <h3 class="text-2xl font-semibold text-primary mb-4">Project Showcase — Developer & Admin Platform</h3>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">Project Showcase — Developer & Admin
+                            Platform</h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            A secure, high-performance developer portfolio, administrative management dashboard, and AI playground built with Next.js 15, React 19, TypeScript, Tailwind CSS v4, Prisma ORM, and Google Gemini AI.
+                            A secure, high-performance developer portfolio, administrative management dashboard, and AI
+                            playground built with Next.js 15, React 19, TypeScript, Tailwind CSS v4, Prisma ORM, and
+                            Google Gemini AI.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -933,13 +1027,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> Next.js 15, React 19, TypeScript, Tailwind v4, Prisma, Gemini AI</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> Next.js
+                            15, React 19, TypeScript, Tailwind v4, Prisma, Gemini AI</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/PROJECT_SHOWCASE" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/PROJECT_SHOWCASE" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://project-showcase-delta-sooty.vercel.app/" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://project-showcase-delta-sooty.vercel.app/" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -951,15 +1048,21 @@
                 </div>
 
                 <!-- Project 4: CodeBuddy -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-blue-500/10 rounded-full border border-blue-500/20">Collaborative Dev Tool</span>
-                            <span class="text-xs font-bold text-white bg-blue-500 px-3 py-1 rounded-full uppercase">MY PRODUCT</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-blue-500/10 rounded-full border border-blue-500/20">Collaborative
+                                Dev Tool</span>
+                            <span class="text-xs font-bold text-white bg-blue-500 px-3 py-1 rounded-full uppercase">MY
+                                PRODUCT</span>
                         </div>
-                        <h3 class="text-2xl font-semibold text-primary mb-4">CodeBuddy — Collaborative Coding Platform</h3>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">CodeBuddy — Collaborative Coding Platform
+                        </h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            Real-time collaborative code editing, snippet sharing, and developer assistance platform built with modern WebSockets, JavaScript, and Tailwind CSS.
+                            Real-time collaborative code editing, snippet sharing, and developer assistance platform
+                            built with modern WebSockets, JavaScript, and Tailwind CSS.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -977,13 +1080,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> JavaScript, React.js, Node.js, WebSockets, Tailwind CSS</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong>
+                            JavaScript, React.js, Node.js, WebSockets, Tailwind CSS</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/CODEBUDDY" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/CODEBUDDY" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://codebuddy-eight.vercel.app" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://codebuddy-eight.vercel.app/" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -995,15 +1101,23 @@
                 </div>
 
                 <!-- Project 5: My Portfolio -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">Full-Stack SaaS Platform</span>
-                            <span class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">PERSONAL WEBSITE</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">Full-Stack
+                                SaaS Platform</span>
+                            <span
+                                class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">PERSONAL
+                                WEBSITE</span>
                         </div>
-                        <h3 class="text-2xl font-semibold text-primary mb-4">My Portfolio — Full-Stack Developer Platform</h3>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">My Portfolio — Full-Stack Developer
+                            Platform</h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            Production-ready, full-stack software engineer portfolio & platform with SaaS aesthetic layout, dynamic database content, GitHub intelligence sync, NextAuth v5 admin panel, and reactive contact system.
+                            Production-ready, full-stack software engineer portfolio & platform with SaaS aesthetic
+                            layout, dynamic database content, GitHub intelligence sync, NextAuth v5 admin panel, and
+                            reactive contact system.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -1021,13 +1135,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> Next.js 15, TypeScript 5, Tailwind v4, Prisma, PostgreSQL, NextAuth</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> Next.js
+                            15, TypeScript 5, Tailwind v4, Prisma, PostgreSQL, NextAuth</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/MY_PORTFOLIO" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/MY_PORTFOLIO" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://anubhavportfolio.online" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://anubhavportfolio.online" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -1039,15 +1156,21 @@
                 </div>
 
                 <!-- Project 6: BookHub -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">Digital Library Platform</span>
-                            <span class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">MINI PROJECT I</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">Digital
+                                Library Platform</span>
+                            <span
+                                class="text-xs font-bold text-white bg-emerald-500 px-3 py-1 rounded-full uppercase">MINI
+                                PROJECT I</span>
                         </div>
                         <h3 class="text-2xl font-semibold text-primary mb-4">BookHub — Digital Library Platform</h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            A modern digital library application enabling users to discover books, generate AI digital summaries, write reviews, and track reading progress.
+                            A modern digital library application enabling users to discover books, generate AI digital
+                            summaries, write reviews, and track reading progress.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -1065,13 +1188,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> TypeScript, Next.js 15, Express.js, Prisma ORM, PostgreSQL</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong>
+                            TypeScript, Next.js 15, Express.js, Prisma ORM, PostgreSQL</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/BOOK_REVIEW_APP" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/BOOK_REVIEW_APP" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://bookreviewapp-blond.vercel.app/" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://bookreviewapp-blond.vercel.app/" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -1083,15 +1209,20 @@
                 </div>
 
                 <!-- Project 7: Hostel Management System -->
-                <div class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
+                <div
+                    class="bg-card rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card project-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-amber-500/10 rounded-full border border-amber-500/20">Class Project</span>
-                            <span class="text-xs font-bold text-white bg-amber-500 px-3 py-1 rounded-full uppercase">2ND YEAR CLASS PROJECT</span>
+                            <span
+                                class="text-xs font-bold text-primary uppercase tracking-wider px-3 py-1 bg-amber-500/10 rounded-full border border-amber-500/20">Class
+                                Project</span>
+                            <span class="text-xs font-bold text-white bg-amber-500 px-3 py-1 rounded-full uppercase">2ND
+                                YEAR CLASS PROJECT</span>
                         </div>
                         <h3 class="text-2xl font-semibold text-primary mb-4">Hostel Management System</h3>
                         <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                            A central hub for students and wardens to manage profile allocations, digital leave applications, and mess payments in one place.
+                            A central hub for students and wardens to manage profile allocations, digital leave
+                            applications, and mess payments in one place.
                         </p>
                         <ul class="text-secondary mb-6 space-y-2 dark:text-gray-600">
                             <li class="flex items-center gap-2">
@@ -1109,13 +1240,16 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong> TypeScript, React.js, Tailwind CSS</p>
+                        <p class="text-secondary mb-4 dark:text-gray-600"><strong>Technologies Used:</strong>
+                            TypeScript, React.js, Tailwind CSS</p>
                         <div class="flex flex-wrap gap-4 mt-auto">
-                            <a href="https://github.com/UnknownHawkins/HOSTEL-MANAGEMENT-SYSTEM" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                            <a href="https://github.com/UnknownHawkins/HOSTEL-MANAGEMENT-SYSTEM" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                                 <i class="fab fa-github"></i>
                                 Source Code
                             </a>
-                            <a href="https://hostel-management-system-pearl.vercel.app/" target="_blank" class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
+                            <a href="https://hostel-management-system-pearl.vercel.app/" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 magnetic-hover">
                                 <i class="fas fa-globe"></i>
                                 Live Demo
                             </a>
@@ -1128,14 +1262,15 @@
             </div>
             <!-- All Project Section-->
             <div class="text-center mt-12">
-                <a href="https://unknownhawkins.github.io/Projects-Showcase/" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                <a href="https://unknownhawkins.github.io/Projects-Showcase/" target="_blank"
+                    class="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                     <i class="fab fa-google-drive"></i>
                     View All Projects on My Project Showcase Website.
                 </a>
             </div>
         </div>
     </section>
-        <!-- GitHub Section -->
+    <!-- GitHub Section -->
     <section id="Github" class="py-20 bg-card relative z-10 dark:bg-gray-100 theme-transition">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -1147,58 +1282,68 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- GitHub Repo 1 - BOOK_REVIEW_APP -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-semibold text-primary">Book Review App</h3>
                         <span class="text-xs bg-primary text-white px-2 py-1 rounded-full">P 1</span>
                     </div>
                     <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                        A React-based book review application with modern UI and interactive features for book enthusiasts.
+                        A React-based book review application with modern UI and interactive features for book
+                        enthusiasts.
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-secondary text-sm dark:text-gray-600">JS/HTML/CSS</span>
-                        <a href="https://github.com/UnknownHawkins/BOOK_REVIEW_APP" target="_blank" class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/BOOK_REVIEW_APP" target="_blank"
+                            class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- GitHub Repo 2 - MY_PORTFOLIO -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.1s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.1s">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-semibold text-primary">Portfolio Website</h3>
                         <span class="text-xs bg-accent text-white px-2 py-1 rounded-full">P 2</span>
                     </div>
                     <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                        Professional portfolio website built with HTML, Tailwind CSS, and JavaScript featuring dynamic content.
+                        Professional portfolio website built with HTML, Tailwind CSS, and JavaScript featuring dynamic
+                        content.
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-secondary text-sm dark:text-gray-600">JS/HTML/CSS</span>
-                        <a href="https://github.com/UnknownHawkins/MY_PORTFOLIO" target="_blank" class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/MY_PORTFOLIO" target="_blank"
+                            class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- GitHub Repo 3 - PYTHON_UTILITY_APPS -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.2s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.2s">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-semibold text-primary">Python Utility Apps</h3>
                         <span class="text-xs bg-success text-white px-2 py-1 rounded-full">P 3</span>
                     </div>
                     <p class="text-secondary mb-4 leading-relaxed dark:text-gray-600">
-                        Collection of three Tkinter desktop apps: Smart Calculator, Password Generator, and To-Do List with Timer.
+                        Collection of three Tkinter desktop apps: Smart Calculator, Password Generator, and To-Do List
+                        with Timer.
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-secondary text-sm dark:text-gray-600">Python</span>
-                        <a href="https://github.com/UnknownHawkins/PROJECTS" target="_blank" class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/PROJECTS" target="_blank"
+                            class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- GitHub Repo 4 - FUNNY PROJECTS -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.2s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.2s">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-semibold text-primary">Few Funny Projects</h3>
                         <span class="text-xs bg-success text-white px-2 py-1 rounded-full">P 4</span>
@@ -1208,7 +1353,8 @@
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-secondary text-sm dark:text-gray-600">HTML/CSS/JS</span>
-                        <a href="https://github.com/UnknownHawkins/FUNNY-PROJECTS" target="_blank" class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/FUNNY-PROJECTS" target="_blank"
+                            class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
@@ -1216,7 +1362,8 @@
 
 
                 <!-- GitHub Repo 4 - SOLAR_SYSTEM -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.3s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.3s">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-semibold text-primary">Solar System</h3>
                         <span class="text-xs bg-[#E9ECEF] text-black px-2 py-1 rounded-full">P 4</span>
@@ -1226,14 +1373,16 @@
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-secondary text-sm dark:text-gray-600">HTML/CSS</span>
-                        <a href="https://github.com/UnknownHawkins/SOLAR_SYSTEM" target="_blank" class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/SOLAR_SYSTEM" target="_blank"
+                            class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- GitHub Repo 5 - CareerPath Ai -->
-                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card" style="animation-delay: 0.4s">
+                <div class="bg-dark rounded-2xl p-6 card-hover animate-fade-in-up dark:bg-white dark:shadow-md glass-card"
+                    style="animation-delay: 0.4s">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-semibold text-primary">CareerPath AI</h3>
                         <span class="text-xs bg-primary text-white px-2 py-1 rounded-full">P 5</span>
@@ -1243,7 +1392,8 @@
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-secondary text-sm dark:text-gray-600">HTML/CSS/JS</span>
-                        <a href="https://github.com/UnknownHawkins/CAREERPATH-AI" target="_blank" class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
+                        <a href="https://github.com/UnknownHawkins/CAREERPATH-AI" target="_blank"
+                            class="text-primary hover:text-accent transition-colors duration-300 magnetic-hover">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
@@ -1252,7 +1402,8 @@
 
             <!-- GitHub Profile Link -->
             <div class="text-center mt-12">
-                <a href="https://github.com/UnknownHawkins/" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 bg-dark text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-300 dark:bg-gray-800 dark:hover:bg-gray-700 magnetic-hover">
+                <a href="https://github.com/UnknownHawkins/" target="_blank"
+                    class="inline-flex items-center gap-3 px-6 py-3 bg-dark text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-300 dark:bg-gray-800 dark:hover:bg-gray-700 magnetic-hover">
                     <i class="fab fa-github"></i>
                     View My GitHub Profile
                 </a>
@@ -1272,7 +1423,8 @@
 
             <div class="max-w-4xl mx-auto space-y-8">
                 <!-- Experience 1 -->
-                <div class="bg-card rounded-2xl p-8 card-hover animate-slide-in-left dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-card rounded-2xl p-8 card-hover animate-slide-in-left dark:bg-white dark:shadow-md glass-card">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-2xl font-semibold text-primary">Python Programming Intern</h3>
@@ -1296,7 +1448,8 @@
                 </div>
 
                 <!-- Experience 2 -->
-                <div class="bg-card rounded-2xl p-8 card-hover animate-slide-in-right dark:bg-white dark:shadow-md glass-card">
+                <div
+                    class="bg-card rounded-2xl p-8 card-hover animate-slide-in-right dark:bg-white dark:shadow-md glass-card">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-2xl font-semibold text-primary">Python Programming Intern</h3>
@@ -1342,7 +1495,8 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold dark:text-dark">Email</h3>
-                                <a href="mailto:jonsnower07@gmail.com" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600">jonsnower07@gmail.com</a>
+                                <a href="mailto:jonsnower07@gmail.com"
+                                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600">jonsnower07@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -1354,7 +1508,8 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold dark:text-dark">X (Twitter)</h3>
-                                <a href="https://x.com/fav7659" target="_blank" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600">@fav7659</a>
+                                <a href="https://x.com/fav7659" target="_blank"
+                                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600">@fav7659</a>
                             </div>
                         </div>
                     </div>
@@ -1366,7 +1521,9 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold dark:text-dark">Instagram</h3>
-                                <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600">scared__abhiii</a>
+                                <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ=="
+                                    target="_blank"
+                                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600">scared__abhiii</a>
                             </div>
                         </div>
                     </div>
@@ -1378,22 +1535,31 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-semibold mb-2 dark:text-dark">Name</label>
-                                <input type="text" name="name" required class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 dark:bg-gray-100 dark:border-gray-300 dark:text-dark" placeholder="Your Lucky Name">
+                                <input type="text" name="name" required
+                                    class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 dark:bg-gray-100 dark:border-gray-300 dark:text-dark"
+                                    placeholder="Your Lucky Name">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-2 dark:text-dark">Email</label>
-                                <input type="email" name="email" required class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 dark:bg-gray-100 dark:border-gray-300 dark:text-dark" placeholder="Your Email">
+                                <input type="email" name="email" required
+                                    class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 dark:bg-gray-100 dark:border-gray-300 dark:text-dark"
+                                    placeholder="Your Email">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold mb-2 dark:text-dark">Phone (Optional)</label>
-                            <input type="tel" name="phone" class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 dark:bg-gray-100 dark:border-gray-300 dark:text-dark" placeholder="Your Phone Number">
+                            <input type="tel" name="phone"
+                                class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 dark:bg-gray-100 dark:border-gray-300 dark:text-dark"
+                                placeholder="Your Phone Number">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold mb-2 dark:text-dark">Purpose or Message</label>
-                            <textarea name="message" required rows="5" class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 resize-none dark:bg-gray-100 dark:border-gray-300 dark:text-dark" placeholder="Purpose or Message"></textarea>
+                            <textarea name="message" required rows="5"
+                                class="w-full px-4 py-3 bg-dark border border-card rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 resize-none dark:bg-gray-100 dark:border-gray-300 dark:text-dark"
+                                placeholder="Purpose or Message"></textarea>
                         </div>
-                        <button type="submit" class="w-full py-4 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
+                        <button type="submit"
+                            class="w-full py-4 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 magnetic-hover">
                             Send Message
                         </button>
                     </form>
@@ -1403,19 +1569,24 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-card border-t border-dark relative z-10 dark:bg-gray-100 dark:border-gray-200 theme-transition">
+    <footer
+        class="py-8 bg-card border-t border-dark relative z-10 dark:bg-gray-100 dark:border-gray-200 theme-transition">
         <div class="container mx-auto px-6 text-center">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.linkedin.com/in/anubhav-singh-aa800b307" target="_blank" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
+                <a href="https://www.linkedin.com/in/anubhav-singh-aa800b307" target="_blank"
+                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
                     <i class="fab fa-linkedin text-xl"></i>
                 </a>
-                <a href="https://github.com/UnknownHawkins////" target="_blank" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
+                <a href="https://github.com/UnknownHawkins////" target="_blank"
+                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
                     <i class="fab fa-github text-xl"></i>
                 </a>
-                <a href="https://x.com/fav7659" target="_blank" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
+                <a href="https://x.com/fav7659" target="_blank"
+                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
                     <i class="fab fa-x-twitter text-xl"></i>
                 </a>
-                <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank" class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
+                <a href="https://www.instagram.com/scared__abhiii?igsh=MTg3a3g1aHdyZXhybQ==" target="_blank"
+                    class="text-secondary hover:text-primary transition-colors duration-300 dark:text-gray-600 magnetic-hover">
                     <i class="fab fa-instagram text-xl"></i>
                 </a>
             </div>
@@ -1464,11 +1635,11 @@
 
             createParticles() {
                 const particleCount = 100; // Increased particle count
-                
+
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
                     particle.className = 'particle animate-particle-float';
-                    
+
                     // Random properties with more variety
                     const size = Math.random() * 6 + 2;
                     const tx = (Math.random() - 0.5) * 300;
@@ -1482,11 +1653,11 @@
                         'rgba(168, 85, 247, 0.4)'    // Purple
                     ];
                     const color = colors[Math.floor(Math.random() * colors.length)];
-                    
+
                     // Random shapes
                     const shapes = ['50%', '0%', '10%'];
                     const shape = shapes[Math.floor(Math.random() * shapes.length)];
-                    
+
                     particle.style.cssText = `
                         width: ${size}px;
                         height: ${size}px;
@@ -1499,7 +1670,7 @@
                         animation-duration: ${Math.random() * 20 + 15}s;
                         animation-delay: ${Math.random() * 10}s;
                     `;
-                    
+
                     this.container.appendChild(particle);
                     this.particles.push(particle);
                 }
@@ -1518,7 +1689,7 @@
                 // Check for saved theme preference or default to dark
                 const savedTheme = localStorage.getItem('theme') || 'dark';
                 this.setTheme(savedTheme);
-                
+
                 // Add event listener to toggle button
                 this.toggleButton.addEventListener('click', () => {
                     this.toggleTheme();
@@ -1528,10 +1699,10 @@
             toggleTheme() {
                 const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
+
                 // Add animation class
                 this.toggleButton.classList.add('animate-pulse');
-                
+
                 setTimeout(() => {
                     this.setTheme(newTheme);
                     this.toggleButton.classList.remove('animate-pulse');
@@ -1552,7 +1723,7 @@
                     this.icon.classList.remove('text-yellow-400');
                     this.icon.classList.add('text-gray-600');
                 }
-                
+
                 // Save theme preference
                 localStorage.setItem('theme', theme);
             }
@@ -1631,16 +1802,16 @@
                         const rect = element.getBoundingClientRect();
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
-                        
+
                         const centerX = rect.width / 2;
                         const centerY = rect.height / 2;
-                        
+
                         const deltaX = (x - centerX) / centerX;
                         const deltaY = (y - centerY) / centerY;
-                        
+
                         element.style.transform = `translate(${deltaX * 10}px, ${deltaY * 10}px)`;
                     });
-                    
+
                     element.addEventListener('mouseleave', () => {
                         element.style.transform = 'translate(0, 0)';
                     });
@@ -1649,7 +1820,7 @@
         }
 
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize enhanced particle system
             new ParticleSystem();
 
@@ -1720,7 +1891,7 @@
             if (e.key === 'Escape') {
                 closeMobileMenu();
             }
-            
+
             // Tab to skip to main content
             if (e.key === 'Tab' && e.target === document.body) {
                 e.preventDefault();
@@ -1747,4 +1918,5 @@
         });
     </script>
 </body>
+
 </html>
