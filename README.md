@@ -1,4 +1,4 @@
-# 💼 Premium Full-Stack Portfolio Platform & Developer Suite
+#  Portfolio Platform
 
 > [!CAUTION]
 > **PROPRIETARY & CONFIDENTIAL INTELLECTUAL PROPERTY**  
