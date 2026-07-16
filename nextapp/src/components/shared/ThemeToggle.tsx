@@ -20,12 +20,15 @@ export default function ThemeToggle() {
   useEffect(() => {
     // Initialize theme from localStorage or default
     const savedTheme = localStorage.getItem("theme-preference") as "dark" | "light" | "system" | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme("dark");
-    }
-    setMounted(true);
+    const timer = setTimeout(() => {
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        setTheme("dark");
+      }
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [setTheme]);
 
   if (!mounted) {

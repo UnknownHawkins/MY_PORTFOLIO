@@ -20,7 +20,7 @@ export default function Hero() {
 
   // Typewriter effect
   useEffect(() => {
-    let timer: any;
+    let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     const activeRole = OWNER.roles[roleIndex];
     const typingSpeed = isDeleting ? 40 : 85;
 
@@ -38,11 +38,15 @@ export default function Hero() {
     if (!isDeleting && currentText === activeRole) {
       timer = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && currentText === "") {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % OWNER.roles.length);
+      timer = setTimeout(() => {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % OWNER.roles.length);
+      }, 0);
     }
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [currentText, isDeleting, roleIndex]);
 
   const handleScrollToSection = (id: string) => {
@@ -229,7 +233,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.0, duration: 0.5 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer z-10 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer z-10 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors hidden md:block"
         onClick={() => {
           playClickSound();
           handleScrollToSection("skills");

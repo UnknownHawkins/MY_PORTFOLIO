@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { RefreshCw } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -60,7 +61,7 @@ export default function ErrorBoundary({
             Try Again
           </Button>
           
-          <a
+          <Link
             href="/"
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
@@ -68,7 +69,7 @@ export default function ErrorBoundary({
             )}
           >
             Go to Homepage
-          </a>
+          </Link>
         </div>
       </div>
     </div>

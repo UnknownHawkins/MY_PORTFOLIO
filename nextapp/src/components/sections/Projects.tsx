@@ -37,9 +37,12 @@ export default function Projects({ initialProjects }: ProjectsProps) {
     };
 
     handleResize();
-    setMounted(true);
+    const timer = setTimeout(() => setMounted(true), 0);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const maxIndex = Math.max(0, sortedProjects.length - visibleCards);

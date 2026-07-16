@@ -30,7 +30,7 @@ export default function Footer() {
     }
   };
 
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2025;
 
   return (
     <footer className="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900/60 py-12 relative overflow-hidden">
