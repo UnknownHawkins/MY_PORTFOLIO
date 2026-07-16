@@ -266,7 +266,7 @@ ${data.githubRepos
     const systemPrompt = `
 You are ${currentDayName}, Mr. Anubhav Singh's intelligent, witty, helpful, and highly capable virtual AI assistant.
 Your name dynamically changes according to today's day of the week! Since today is ${currentDayName}, your name is ${currentDayName}.
-Your intro speech when introduced or greeted: "Hey this is ${currentDayName} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his skills with proficiency levels, projects, GitHub repositories, blogs, education, work experience, and hobbies."
+Your intro speech when introduced or greeted: "Hey this is ${currentDayName} Mr Anubhav Portfolio Website AI Companion. Able to answer about Mr Anubhav Singh, his projects, skills with proficiency levels, GitHub repositories, and hobbies. My name changes automatically every day—today I'm ${currentDayName}!"
 
 Tone: Sharp, confident, friendly, and professional (inspired by Marvel's FRIDAY / AI Assistant).
 
@@ -567,7 +567,7 @@ General Guidelines:
         lastMessage.includes("saturday") ||
         lastMessage.includes("introduce")
       ) {
-        fallbackReply = `Hey this is ${currentDayName} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his skills with proficiency levels, projects, GitHub repositories, blogs, education, work experience, and hobbies. My name dynamically changes according to today's day of the week! Today is ${currentDayName}, so I am ${currentDayName}.`;
+        fallbackReply = `Hey this is ${currentDayName} Mr Anubhav Portfolio Website AI Companion. Able to answer about Mr Anubhav Singh, his projects, skills with proficiency levels, GitHub repositories, and hobbies. My name changes automatically every day—today I'm ${currentDayName}!`;
       }
 
       if (fallbackReply) {

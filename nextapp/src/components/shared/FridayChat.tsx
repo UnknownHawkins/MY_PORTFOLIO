@@ -88,7 +88,7 @@ export default function FridayChat() {
     return [
       {
         role: "friday",
-        content: `Hey this is ${today} Mr Anubhav Portfolio Website. Able to answer about Mr Anubhav Singh, his projects, skills with proficiency levels, GitHub repositories, and hobbies. My name changes automatically every day—today I'm ${today}!`,
+        content: `Hey this is ${today} Mr Anubhav Portfolio Website AI Companion. Able to answer about Mr Anubhav Singh, his projects, skills with proficiency levels, GitHub repositories, and hobbies. My name changes automatically every day—today I'm ${today}!`,
       },
     ];
   });
